@@ -1,0 +1,143 @@
+﻿@{
+    ViewData["Title"] = "Servicios";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/Portada/Css/Gstyle.css" />
+    <link rel="stylesheet" href="~/Portada/Css/Index.css" />
+    <link rel="stylesheet" href="~/Portada/Css/Buttons.css" />
+    <link rel="icon" href="~/Portada/images/Abak.ico" type="image/x-icon" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+}
+
+<nav class="navbar">
+    <img src="~/Portada/images/Abak.png" alt="Logo" class="Logo-menu">
+    <ul>
+        <li class="home"><a asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i><span class="nav-text">Inicio</span></a></li>
+        <li class="home"><a asp-controller="Servicios" asp-action="Index"><i class="fas fa-cogs"></i><span class="nav-text">Servicios</span></a></li>
+        <li class="home"><a asp-controller="Equipo" asp-action="Index"><i class="fas fa-users"></i><span class="nav-text">Equipo</span></a></li>
+        <li class="home"><a asp-controller="Demo" asp-action="Index"><i class="fas fa-desktop"></i><span class="nav-text">Demo</span></a></li>
+    </ul>
+</nav>
+
+<section class="carousel">
+    <div class="list">
+        <div class="itemc">
+            <img src="~/Portada/images/banner%201.jpg" alt="">
+            <div class="content">
+                <div class="name">Servicios</div>
+                <div class="title">Administración</div>
+                <div class="des">➤Centraliza datos y procesos.<br>➤ Mejora la toma de decisiones.<br>➤ Automatiza tareas clave.</div>
+                <button type="button">Ver más</button>
+            </div>
+        </div>
+
+        <div class="itemc">
+            <img src="~/Portada/images/banner%202.jpg" alt="">
+            <div class="content">
+                <div class="name">Servicios</div>
+                <div class="title">Almacenes</div>
+                <div class="des">➤ Reduce pérdidas y robos.<br>➤ Optimiza entradas y salidas.<br>➤ Gestión en tiempo real.</div>
+                <button type="button">Ver más</button>
+            </div>
+        </div>
+
+        <div class="itemc">
+            <img src="~/Portada/images/banner%203.jpg" alt="">
+            <div class="content">
+                <div class="name">Servicios</div>
+                <div class="title">Facturación</div>
+                <div class="des">➤ Genera facturas en segundos.<br>➤ Cumple normativas fiscales.<br>➤ Reduce errores manuales.</div>
+                <button type="button">Ver más</button>
+            </div>
+        </div>
+
+        <div class="itemc">
+            <img src="~/Portada/images/banner%204.jpg" alt="">
+            <div class="content">
+                <div class="name">Servicios</div>
+                <div class="title">Logística</div>
+                <div class="des">➤ Rastreo preciso de envíos.<br>➤ Reducción de costos operativos.<br>➤ Planificación eficiente de rutas.</div>
+                <button type="button">Ver más</button>
+            </div>
+        </div>
+
+        <div class="itemc">
+            <img src="~/Portada/images/banner%205.jpg" alt="">
+            <div class="content">
+                <div class="name">Servicios</div>
+                <div class="title">Producción</div>
+                <div class="des">➤ Control de insumos y tiempos.<br>➤ Automatización de procesos.<br>➤ Mejora la calidad del producto.</div>
+                <button type="button">Ver más</button>
+            </div>
+        </div>
+
+        <div class="itemc">
+            <img src="~/Portada/images/banner%206.jpg" alt="">
+            <div class="content">
+                <div class="name">Servicios</div>
+                <div class="title">Ventas</div>
+                <div class="des">➤ Seguimiento de clientes y pedidos.<br>➤ Reportes en tiempo real.<br>➤ Integración multicanal.</div>
+                <button type="button">Ver más</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="thumbnail">
+        <div class="item"><img src="~/Portada/images/banner%201.jpg" alt=""><div class="content"><div class="title">Administración</div><div class="des">Transforma tu productividad.</div></div></div>
+        <div class="item"><img src="~/Portada/images/banner%202.jpg" alt=""><div class="content"><div class="title">Almacenes</div><div class="des">Control total de tu inventario.</div></div></div>
+        <div class="item"><img src="~/Portada/images/banner%203.jpg" alt=""><div class="content"><div class="title">Facturación</div><div class="des">Procesos rápidos y sin errores.</div></div></div>
+        <div class="item"><img src="~/Portada/images/banner%204.jpg" alt=""><div class="content"><div class="title">Logística</div><div class="des">Optimiza tiempos y costos.</div></div></div>
+        <div class="item"><img src="~/Portada/images/banner%205.jpg" alt=""><div class="content"><div class="title">Producción</div><div class="des">Mayor eficiencia.</div></div></div>
+        <div class="item"><img src="~/Portada/images/banner%206.jpg" alt=""><div class="content"><div class="title">Ventas</div><div class="des">Impulsa ingresos.</div></div></div>
+    </div>
+
+    <div class="arrows">
+        <button id="prev" type="button"><</button>
+        <button id="next" type="button">></button>
+    </div>
+    <div class="time"></div>
+</section>
+
+@section Scripts {
+    <script>
+        const nextDom = document.getElementById('next');
+        const prevDom = document.getElementById('prev');
+        const listitemDom = document.querySelector('.carousel .list');
+        const thumbnailDom = document.querySelector('.carousel .thumbnail');
+
+        // scroll navbar
+        window.addEventListener("scroll", () => {
+          const navbar = document.querySelector(".navbar");
+          navbar?.classList.toggle("scrolled", window.scrollY > 50);
+        });
+
+        let autoSlideInterval = setInterval(() => showSlider('next'), 10000);
+
+        nextDom?.addEventListener('click', () => { showSlider('next'); resetAutoSlide(); });
+        prevDom?.addEventListener('click', () => { showSlider('prev'); resetAutoSlide(true); });
+
+        function showSlider(type) {
+          const itemSlider = document.querySelectorAll('.carousel .list .itemc');
+          const itemThumb  = document.querySelectorAll('.carousel .thumbnail .item');
+          listitemDom.classList.add('transitioning');
+          thumbnailDom.classList.add('transitioning');
+          setTimeout(() => {
+            if (type === 'next') { listitemDom.appendChild(itemSlider[0]); thumbnailDom.appendChild(itemThumb[0]); }
+            else { listitemDom.insertBefore(itemSlider[itemSlider.length - 1], itemSlider[0]);
+                   thumbnailDom.insertBefore(itemThumb[itemThumb.length - 1], itemThumb[0]); }
+            listitemDom.classList.remove('transitioning');
+            thumbnailDom.classList.remove('transitioning');
+          }, 500);
+        }
+
+        function resetAutoSlide(isPrev) {
+          clearInterval(autoSlideInterval);
+          setTimeout(() => {
+            autoSlideInterval = setInterval(() => showSlider('next'), 10000);
+          }, isPrev ? 10000 : 0);
+        }
+    </script>
+}

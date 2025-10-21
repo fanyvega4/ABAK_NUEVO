@@ -1,0 +1,360 @@
+:root {
+    --primary-light: #d9d9d9;
+    --primary: #333333;
+    --primary-dark: #8c8c8c;
+    
+    --white: #FFFFFF;
+    --greyLight-1: #f2f2f2;
+    --greyLight-2: #e0e0e0;
+    --greyLight-3: #cccccc;
+    --greyDark: #a6a6a6;
+  
+    --greyDark-1: #4d4d4d; /* Color base más claro */
+    --greyDark-2: #404040; /* Tono intermedio */
+    --greyDark-3: #3a3a3a; /* Tono más oscuro */
+    --greyDark: #262626; /* Sombras suaves */
+  }
+  
+body {
+    background: linear-gradient(to right,var(--primary) , var(--greyDark-3), var(--primary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+    width: 50rem;
+    max-width: 100%;
+    min-width: 25rem;
+    min-height: 500px; /* 🔹 Añadimos altura mínima */
+    display: flex;
+    align-items: stretch; /* 🔹 Asegura que todo se expanda */
+}
+
+.container p {
+    font-size: 16px;
+}
+
+
+.container a {
+    color: #777777;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+    display: inline-block;
+}
+
+.container form {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all .6s ease-in-out;
+}
+.sign-in{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.active .sign-in{
+    transform: translateX(100%);
+}
+.sign-up{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.active .sign-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move .6s;
+}
+
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+/* Íconos Sociales */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons a {
+    font-size: 24px;
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-icons a:hover { color: #0077b5; }
+.social-icons a:nth-child(1):hover { color: #1877F2; }
+.social-icons a:nth-child(2):hover { color: #0077b5; }
+.social-icons a:nth-child(3):hover { color: #25D366; }
+
+/* MEDIA QUERIES PARA RESPONSIVIDAD */
+@media (max-width: 768px) {
+    .item {
+        flex-direction: column; /* Cambiar a una sola columna en pantallas pequeñas */
+        padding: 20px;
+    }
+
+    .left, .right {
+        padding-right: 0;
+        padding-left: 0;
+        flex: 1;
+        width: 100%;
+    }
+
+    .login-form {
+        width: 100%;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .social-icons {
+        flex-direction: row; /* Mantener los íconos en fila */
+        gap: 15px;
+        justify-content: center; /* Asegurar que estén centrados */
+    }
+
+    .social-icons a {
+        font-size: 22px; /* Reducir ligeramente el tamaño de los íconos */
+    }
+}
+
+@media (max-width: 480px) {
+    .login-form h2 {
+        font-size: 1.2rem;
+    }
+
+    .input-box input {
+        font-size: 14px;
+    }
+
+    .social-icons a {
+        font-size: 20px; /* Ajustar el tamaño de los íconos en pantallas muy pequeñas */
+    }
+}
+
+/*toggle container*/
+.toggle-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.container.active .toggle-container{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle{
+    background-color: #512da8;
+    height: 100%;
+    background: linear-gradient(to right,var(--primary), var(--greyDark-3));
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container.active .toggle{
+    transform: translateX(50%);
+}
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+
+.container.active .toggle-left{
+    transform: translateX(0);
+}
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.active .toggle-right{
+    transform: translateX(200%);
+}
+
+/* MEDIA QUERIES PARA RESPONSIVIDAD */
+@media (max-width: 768px) {
+    .container {
+        width: 100%; /* Asegura que se ajuste completamente */
+        padding: 20px;
+        flex-direction: column;
+    }
+
+    .item {
+        flex-direction: column; 
+        padding: 20px;
+    }
+
+    .left, .right {
+        padding-right: 0;
+        padding-left: 0;
+        flex: 1;
+        width: 100%;
+    }
+
+    .login-form {
+        width: 100%;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .social-icons {
+        flex-direction: row;
+        gap: 15px;
+        justify-content: center; 
+    }
+
+    .social-icons a {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-form h2 {
+        font-size: 1.2rem;
+    }
+
+    .input-box input {
+        font-size: 12px;
+    }
+
+    .social-icons a {
+        font-size: 20px; 
+    }
+
+    /* Ajuste de la transición del toggle */
+    .toggle-container {
+        display: none; /* No mostrar el toggle en pantallas pequeñas */
+    }
+
+    .form-container {
+        width: 100%; /* Asegura que los formularios ocupen todo el espacio disponible */
+    }
+}
+
+/* Ajustes de toggle y transición */
+.toggle-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.container.active .toggle-container{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle{
+    background-color: #512da8;
+    height: 100%;
+    background: linear-gradient(to right,var(--primary), var(--greyDark-3));
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container.active .toggle{
+    transform: translateX(50%);
+}
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+
+.container.active .toggle-left{
+    transform: translateX(0);
+}
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.active .toggle-right{
+    transform: translateX(200%);
+}

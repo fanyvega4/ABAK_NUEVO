@@ -1,0 +1,44 @@
+﻿@* Ruta: Views/Shared/_Layout.cshtml *@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>@(string.IsNullOrWhiteSpace(ViewData["Title"] as string) ? "ABAK" : $"{ViewData["Title"]} - ABAK")</title>
+
+    @* Favicon global (ajusta la ruta si tu .ico vive en otro subdirectorio) *@
+    <link rel="icon" href="~/Portada/images/Abak.ico" type="image/x-icon" />
+
+    @* Estilos globales del sitio (opcional) *@
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    @* Cada vista puede inyectar sus propios estilos aquí *@
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header id="site-header">
+        @* Navbar/logo global si lo necesitas
+        <a asp-controller="Home" asp-action="Index" class="brand">ABAK</a>
+        *@
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer id="site-footer">
+        @* Footer global opcional *@
+    </footer>
+
+    @* Scripts globales (mantén esto liviano) *@
+    <script src="~/js/site.js" asp-append-version="true" defer></script>
+
+    @* Cada vista puede inyectar scripts propios aquí *@
+    @RenderSection("Scripts", required: false)
+
+    @* Si alguna vista quiere cargar scripts de validación (forms), puede definir esta sección *@
+    @RenderSection("ValidationScripts", required: false)
+</body>
+</html>

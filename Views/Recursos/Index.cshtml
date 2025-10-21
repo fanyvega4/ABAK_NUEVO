@@ -1,0 +1,188 @@
+﻿@{
+    ViewData["Title"] = "Recursos";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/Portada/Css/Gstyle.css" />
+    <link rel="stylesheet" href="~/Portada/Css/Index.css" />
+    <link rel="stylesheet" href="~/Portada/Css/Buttons.css" />
+    <link rel="stylesheet" href="~/Portada/Css/Recursos.css" />
+    <link rel="icon" href="~/Portada/images/Abak.ico" type="image/x-icon" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+}
+
+<nav class="navbar">
+    <a asp-controller="Home" asp-action="Index" class="navbar-logo" aria-label="Ir al inicio">
+        <img src="~/Portada/images/Abak.png" alt="Logo Abak" class="Logo-menu">
+    </a>
+    <ul class="nav-list">
+        <li class="nav-item"><a asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i><span class="nav-text">Inicio</span></a></li>
+        <li class="nav-item"><a asp-controller="Recursos" asp-action="Index"><i class="fas fa-book"></i><span class="nav-text">Recursos</span></a></li>
+        <!-- Campus aún no existe: deja # o apúntalo luego al área Capacitacion -->
+        <li class="nav-item"><a href="#"><i class="fas fa-university"></i><span class="nav-text">Campus</span></a></li>
+        <li class="nav-item"><a asp-controller="Equipo" asp-action="Index"><i class="fas fa-users"></i><span class="nav-text">Equipo</span></a></li>
+        <li class="nav-item"><a asp-controller="Servicios" asp-action="Index"><i class="fas fa-cogs"></i><span class="nav-text">Servicios</span></a></li>
+        <li class="nav-item"><a asp-controller="Demo" asp-action="Index"><i class="fas fa-desktop"></i><span class="nav-text">Demo</span></a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="item_wrap" id="item_wrap" tabindex="0">
+        <div class="wrap">
+            <div class="curve">
+                <svg viewBox="0 0 600 600" preserveAspectRatio="none">
+                    <path d="M0,0 L420,0 C340,70 340,210 420,280 C520,370 520,500 420,600 L0,600 Z" fill="white" />
+                </svg>
+            </div>
+            <div class="hex one"></div>
+            <div class="hex two"></div>
+            <div class="hex three"></div>
+            <div class="hex four"></div>
+            <div class="hex five"></div>
+        </div>
+    </div>
+
+    <div class="hero-copy">
+        <p class="hero-kicker">Bienvenido a la</p>
+        <h1 class="hero-title"><b>BIBLIOTECA</b></h1>
+        <p class="hero-desc">
+            Aquí encontrarás contenido gratuito para el crecimiento de tu empresa.
+            Descubre tendencias, buenas prácticas y cómo beneficiar tu negocio a través de la innovación.
+        </p>
+        <div class="search">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                <path d="M20 20 L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <input type="search" placeholder="¿Buscas alguna categoría en específico?" />
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="mascot-float">
+            <img class="mascot" src="~/Portada/images/Sak/complet%20libro.png" alt="Sak leyendo un libro">
+        </div>
+    </div>
+</section>
+
+<!-- sidebar -->
+<section class="library-layout">
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar__nav">
+            <button class="sidebar__toggle" id="sidebarToggle" aria-label="Abrir/cerrar menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="sidebar__list">
+                <li class="sidebar__item is-active"><a href="#" class="sidebar__link"><i class="fa-solid fa-book-open"></i><span class="sidebar__label">Todos</span></a></li>
+                <li class="sidebar__item"><a href="#" class="sidebar__link"><i class="fa-solid fa-clipboard-list"></i><span class="sidebar__label">Inventarios</span></a></li>
+                <li class="sidebar__item"><a href="#" class="sidebar__link"><i class="fa-solid fa-box"></i><span class="sidebar__label">Logística</span></a></li>
+                <li class="sidebar__item"><a href="#" class="sidebar__link"><i class="fa-solid fa-dolly"></i><span class="sidebar__label">Proveedores</span></a></li>
+                <li class="sidebar__item"><button class="Admin" id="Admin-library" style="width:2rem;height:2rem;background:#fff;border:none;"></button></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Contenedores -->
+    <main class="Content-library" id="Todos">
+        <h1>Más recientes</h1>
+        <div class="library-grid">
+            <article class="lib-card">
+                <span class="lib-badge">Inventarios</span>
+                <img class="lib-thumb" src="~/Portada/images/banner%201.jpg" alt="Manual de inventarios">
+                <h4 class="lib-title">Título</h4>
+                <p class="lib-excerpt">Lorem ipsum dolor sit amet…</p>
+                <div class="lib-tags"><span class="tag">Tiempo</span><span class="tag">Tiempo</span><span class="tag">Tiempo</span></div>
+                <a class="lib-cta" href="#" target="_blank" rel="noopener">Ver PDF</a>
+            </article>
+
+            <!-- duplica más cards si quieres -->
+        </div>
+    </main>
+
+    <main class="Content-library" id="Descargados">
+        <h1>Más descargados</h1>
+        <div class="library-grid">
+            <article class="lib-card">
+                <span class="lib-badge">Inventarios</span>
+                <img class="lib-thumb" src="~/Portada/images/banner%201.jpg" alt="Manual de inventarios">
+                <h4 class="lib-title">Título</h4>
+                <p class="lib-excerpt">Lorem ipsum dolor sit amet…</p>
+                <div class="lib-tags"><span class="tag">Tiempo</span><span class="tag">Tiempo</span><span class="tag">Tiempo</span></div>
+                <a class="lib-cta" href="#" target="_blank" rel="noopener">Ver PDF</a>
+            </article>
+        </div>
+    </main>
+</section>
+
+@section Scripts {
+    <script>
+        // Navbar sticky
+        window.addEventListener("scroll", function () {
+          const navbar = document.querySelector(".navbar");
+          navbar?.classList.toggle("scrolled", window.scrollY > 50);
+        });
+
+        // Parallax/mascota (tu mismo script, intacto)
+        document.addEventListener("DOMContentLoaded", () => {
+          const hex1 = document.querySelector(".hex.one");
+          const hex2 = document.querySelector(".hex.two");
+          const hex3 = document.querySelector(".hex.three");
+          const hex4 = document.querySelector(".hex.four");
+          const hex5 = document.querySelector(".hex.five");
+          const mascot = document.querySelector(".mascot");
+          const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+          function getConfig() {
+            const w = window.innerWidth;
+            if (w <= 480)  return { depth:{h1:.05,h2:.03,h3:.07,h4:0,h5:0,ms:-.02}, scale:{h1:2.2,h2:1,h3:2.2,h4:1,h5:1} };
+            if (w <= 768)  return { depth:{h1:.07,h2:.04,h3:.09,h4:0,h5:0,ms:-.025}, scale:{h1:2.6,h2:1,h3:2.6,h4:1,h5:1} };
+            if (w <= 1200) return { depth:{h1:.10,h2:.05,h3:.12,h4:.06,h5:.07,ms:-.035}, scale:{h1:2.8,h2:1,h3:2.8,h4:1.35,h5:1.35} };
+            return { depth:{h1:.12,h2:.06,h3:.14,h4:.08,h5:.09,ms:-.04}, scale:{h1:3,h2:1,h3:3,h4:1.5,h5:1.5} };
+          }
+
+          let cfg = getConfig();
+          window.addEventListener("resize", () => { cfg = getConfig(); });
+
+          function setHex(el, y, s){ if(!el) return; el.style.transform=`translateY(${y}px) scale(${s})`; el.style.transformOrigin="center"; el.style.willChange="transform";}
+          function setMascot(y){ if(!mascot) return; mascot.style.transform=`translateY(${18 + y}px)`; mascot.style.willChange="transform";}
+
+          if (reduceMotion) { setHex(hex1,0,2.4); setHex(hex2,0,1); setHex(hex3,0,2.4); setHex(hex4,0,1.3); setHex(hex5,0,1.3); setMascot(0); return; }
+
+          let ticking=false;
+          function onScroll(){
+            if(ticking) return; ticking=true;
+            requestAnimationFrame(()=>{
+              const y = window.scrollY || 0;
+              setHex(hex1,  y*cfg.depth.h1, cfg.scale.h1);
+              setHex(hex2, -y*cfg.depth.h2, cfg.scale.h2);
+              setHex(hex3,  y*cfg.depth.h3, cfg.scale.h3);
+              setHex(hex4, -y*cfg.depth.h4, cfg.scale.h4);
+              setHex(hex5,  y*cfg.depth.h5, cfg.scale.h5);
+              setMascot(    y*cfg.depth.ms );
+              ticking=false;
+            });
+          }
+          window.addEventListener("scroll", onScroll, { passive:true });
+          onScroll();
+        });
+
+        // Sidebar responsive
+        const sidebar = document.getElementById('sidebar');
+        const toggle  = document.getElementById('sidebarToggle');
+        function applyCompactLock(){
+          if (window.innerWidth <= 900) { sidebar.classList.add('is-locked-compact'); sidebar.classList.remove('is-open'); }
+          else { sidebar.classList.remove('is-locked-compact'); }
+        }
+        applyCompactLock();
+        window.addEventListener('resize', applyCompactLock);
+        toggle?.addEventListener('click', () => { if(!sidebar.classList.contains('is-locked-compact')) sidebar.classList.toggle('is-open'); });
+        document.querySelectorAll('.sidebar__link').forEach(a => {
+          a.addEventListener('click', () => {
+            document.querySelectorAll('.sidebar__item').forEach(li => li.classList.remove('is-active'));
+            a.closest('.sidebar__item')?.classList.add('is-active');
+          });
+        });
+    </script>
+}

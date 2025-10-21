@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Equipo";
+}
+
+@section Styles {
+    <!-- Estilos globales y específicos -->
+    <link rel="stylesheet" href="~/Portada/Css/Gstyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Portada/Css/Equipo.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Portada/Css/Buttons.css" asp-append-version="true" />
+
+    <!-- Iconos y favicon -->
+    <link rel="icon" href="~/Portada/images/Abak.ico" type="image/x-icon" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+}
+
+<nav class="navbar" role="navigation" aria-label="Principal">
+    <img src="~/Portada/images/Abak.png" alt="ABAK" class="Logo-menu" />
+    <ul>
+        <li class="home">
+            <a asp-controller="Home" asp-action="Index">
+                <i class="fas fa-home" aria-hidden="true"></i>
+                <span class="nav-text">Inicio</span>
+            </a>
+        </li>
+        <li class="home">
+            <a asp-controller="Servicios" asp-action="Index">
+                <i class="fas fa-cogs" aria-hidden="true"></i>
+                <span class="nav-text">Servicios</span>
+            </a>
+        </li>
+        <li class="home">
+            <a asp-controller="Equipo" asp-action="Index" aria-current="page">
+                <i class="fas fa-users" aria-hidden="true"></i>
+                <span class="nav-text">Equipo</span>
+            </a>
+        </li>
+        <li class="home">
+            <a asp-controller="Demo" asp-action="Index">
+                <i class="fas fa-desktop" aria-hidden="true"></i>
+                <span class="nav-text">Demo</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Contenido -->
+<div class="team">
+    <!-- PERSONA 1 -->
+    <div class="person">
+        <div class="container">
+            <div class="container-inner">
+                <!-- Pega tu data URI base64 en estos src -->
+                <img class="circle"
+                     src="data:image/jpeg;base64,PEGAR_AQUI_TU_BASE64_FOTO_1" alt="Foto persona 1" />
+                <img class="img img1"
+                     src="data:image/png;base64,PEGAR_AQUI_TU_BASE64_BG_1" alt="" />
+            </div>
+            <div class="divider"></div>
+            <div class="name">Gabriela</div>
+            <div class="title">CEO</div>
+        </div>
+    </div>
+
+    <!-- PERSONA 2 -->
+    <div class="person">
+        <div class="container">
+            <div class="container-inner">
+                <img class="circle"
+                     src="data:image/jpeg;base64,PEGAR_AQUI_TU_BASE64_FOTO_2" alt="Foto persona 2" />
+                <img class="img img2"
+                     src="data:image/png;base64,PEGAR_AQUI_TU_BASE64_BG_2" alt="" />
+            </div>
+            <div class="divider"></div>
+            <div class="name">Israel</div>
+            <div class="title">Director de Tecnología</div>
+        </div>
+    </div>
+
+    <!-- PERSONA 3 -->
+    <div class="person">
+        <div class="container">
+            <div class="container-inner">
+                <img class="circle"
+                     src="data:image/jpeg;base64,PEGAR_AQUI_TU_BASE64_FOTO_3" alt="Foto persona 3" />
+                <img class="img img3"
+                     src="data:image/png;base64,PEGAR_AQUI_TU_BASE64_BG_3" alt="" />
+            </div>
+            <div class="divider"></div>
+            <div class="name">Areici</div>
+            <div class="title">Ingeniera en sistemas</div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Efecto de navbar al hacer scroll
+        window.addEventListener("scroll", function () {
+          const navbar = document.querySelector(".navbar");
+          if (!navbar) return;
+          navbar.classList.toggle("scrolled", window.scrollY > 50);
+        });
+    </script>
+}

@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Sumana:wght@700&display=swap");
+
+/* Reset suave para evitar sorpresas de box model */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.team {
+    /* Deja que el contenido crezca. 100vh recorta en mobile y causa “una sola fila” */
+    /* height: 100vh;  <-- QUITADO */
+    min-height: 100vh;
+    /* Fondo y tipografía como tenías */
+    background-color: #333333;
+    font-family: "Merriweather", serif;
+    /* Cambiamos a grid responsivo, centrado */
+    display: grid;
+    grid-template-columns: 1fr; /* Móvil: 1 columna */
+    gap: 60px 80px;
+    justify-content: center;
+    align-items: start;
+    /* Algo de respiración lateral/vertical */
+    padding: 80px 5vw;
+    margin: 0;
+}
+
+/* 2 columnas en tablets */
+@media (min-width: 768px) {
+    .team {
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
+    }
+}
+
+/* 3 columnas en desktop */
+@media (min-width: 992px) {
+    .team {
+        grid-template-columns: repeat(3, minmax(260px, 1fr));
+    }
+}
+
+/* TARJETAS */
+.person {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    margin: 0 auto; /* centra cada tarjeta dentro de su celda */
+}
+
+/* CONTENEDOR DE LA CABEZA/IMAGEN */
+.container {
+    position: relative; /* Necesario para :after y capas internas */
+    border-radius: 50%;
+    height: 312px;
+    -webkit-tap-highlight-color: transparent;
+    transform: scale(0.48);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    width: 400px;
+    will-change: transform;
+}
+
+    /* Sombrita bajo la tarjeta (tu “sombra elíptica”) */
+    .container:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        background-color: #333333;
+        height: 10px;
+        width: 100%;
+        top: 390px;
+        filter: blur(2px);
+        opacity: .65;
+    }
+
+    /* Hover sutil */
+    .container:hover {
+        transform: scale(0.54);
+    }
+
+/* CONTENIDO INTERIOR RECORTADO */
+.container-inner {
+    clip-path: path("M 390,400 C 390,504.9341 304.9341,590 200,590 95.065898,590 10,504.9341 10,400 V 10 H 200 390 Z");
+    position: relative;
+    transform-origin: 50%;
+    top: -200px;
+}
+
+/* IMAGEN CIRCULAR PRINCIPAL */
+.circle {
+    position: absolute;
+    z-index: 2; /* por encima del fondo decorativo */
+    left: 10px;
+    top: 210px;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    object-fit: cover;
+    pointer-events: none;
+    cursor: pointer;
+    background-color: #fee7d3;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* IMAGEN DECORATIVA (fondo) */
+.img {
+    position: relative; /* se anima sobre su posición */
+    z-index: 1; /* debajo del circle */
+    pointer-events: none;
+    transform: translateY(20px) scale(1.15);
+    transform-origin: 50% bottom;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.container:hover .img {
+    transform: translateY(0) scale(1.2);
+}
+
+/* Offsets específicos por variante (como tenías) */
+.img1 {
+    left: 22px;
+    top: 164px;
+    width: 340px;
+}
+
+.img2 {
+    left: -46px;
+    top: 174px;
+    width: 444px;
+}
+
+.img3 {
+    left: -16px;
+    top: 144px;
+    width: 466px;
+}
+
+/* DIVISOR, NOMBRE Y TÍTULO */
+.divider {
+    background-color: #00AEEF;
+    height: 3px; /* un poco más visible */
+    width: 160px;
+    margin-top: 20px;
+    opacity: .85;
+}
+
+.name {
+    color: #00AEEF;
+    font-size: clamp(26px, 3.2vw, 40px); /* adaptativo */
+    font-weight: 800;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.title {
+    color: #b8b8b8;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 6px;
+    text-align: center;
+}
+
+/* NAVBAR de seguridad, por si tu global no lo pinta */
+.navbar {
+    background-color: #a7a9ac;
+    padding: 8px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .navbar img {
+        height: 40px;
+    }
+
+    .navbar ul {
+        display: flex;
+        gap: 25px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar a {
+        color: black;
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+        .navbar a:hover {
+            color: #00AEEF;
+        }

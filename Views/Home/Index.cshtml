@@ -1,0 +1,444 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+@section Styles {
+    <!-- Estilos desde la carpeta Portada mapeada como estáticos -->
+    <link rel="stylesheet" href="~/Portada/Css/Gstyle.css" />
+    <link rel="stylesheet" href="~/Portada/Css/Index.css" />
+    <link rel="stylesheet" href="~/Portada/Css/Buttons.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="~/Portada/images/Abak.ico" type="image/x-icon" />
+
+    <!-- Precarga del video de fondo (actualizado a nueva_imagen.mp4) -->
+    <link rel="preload" as="video" href="~/Portada/images/nueva_imagen.mp4" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+}
+
+<!-- Accesibilidad: enlace para saltar al contenido -->
+<a class="skip-link" href="#about-us">Saltar al contenido</a>
+
+<!-- Botón del chatbox en la parte izquierda -->
+<div class="chatbox-btn" aria-label="Abrir chat">
+    <i class="fas fa-comments" aria-hidden="true"></i>
+</div>
+
+<!-- Botón para volver al inicio -->
+<button type="button" class="scroll-to-top-btn" aria-label="Volver arriba">
+    <i class="fas fa-chevron-up" aria-hidden="true"></i>
+</button>
+
+<noscript>
+    <div class="nojs-warning">
+        Tu navegador tiene JavaScript deshabilitado. Algunas animaciones y botones no funcionarán.
+    </div>
+</noscript>
+
+<!-- Video de fondo (actualizado a nueva_imagen.mp4). Cambia el poster si tienes una imagen de portada. -->
+<video autoplay loop muted playsinline class="backvideo" poster="~/Portada/images/hexagonos.png">
+    <source src="~/Portada/images/nueva_imagen.mp4" type="video/mp4" />
+</video>
+
+<nav class="navbar" role="navigation" aria-label="Principal">
+    <img src="~/Portada/images/Abak.png" alt="ABAK" class="Logo-menu" loading="lazy" />
+    <ul>
+        <li class="home">
+            <a asp-controller="Home" asp-action="Index" aria-current="page">
+                <i class="fas fa-home" aria-hidden="true"></i>
+                <span class="nav-text">Inicio</span>
+            </a>
+        </li>
+        <li class="home">
+            <a asp-controller="Servicios" asp-action="Index">
+                <i class="fas fa-cogs" aria-hidden="true"></i>
+                <span class="nav-text">Servicios</span>
+            </a>
+        </li>
+        <li class="home">
+            <a asp-controller="Equipo" asp-action="Index">
+                <i class="fas fa-users" aria-hidden="true"></i>
+                <span class="nav-text">Equipo</span>
+            </a>
+        </li>
+        <li class="home">
+            <a asp-controller="Demo" asp-action="Index">
+                <i class="fas fa-desktop" aria-hidden="true"></i>
+                <span class="nav-text">Demo</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div class="presentacion">
+    <!-- Renombra ese archivo con espacios cuando puedas. Mientras, URL-encode. -->
+    <img src="~/Portada/images/Abak%20blanco%20s.png" alt="Logo Abak" loading="lazy" />
+    <a href="#about-us">Explora</a>
+</div>
+
+<section class="about-us" id="about-us">
+    <div class="content">
+        <h2>Sobre Nosotros</h2>
+        <p>
+            Somos una empresa dedicada al desarrollo de sistemas de información estratégicos para empresas de producción,
+            basados en la implementación de soluciones automatizadas por medio de nuestro software ERP.
+        </p>
+        <div class="l-grid">
+            <div class="l-grid__item">
+                <div class="experience-container">
+                    <div class="c-button" data-button="red">
+                        <span class="c-button__label">+25 años</span>
+                    </div>
+                    <span class="experience-text" style="font-size: 35px;">
+                        Desarrollando soluciones<br />ERP para empresas.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <p>
+            A través de nuestro ERP SIAAPI facilitamos los procesos de compras, ventas, pagos, facturación, planeación de la producción,
+            control de los procesos de producción, almacenes, logística y calidad de tu empresa.
+        </p>
+    </div>
+</section>
+
+<section class="gray" id="porque">
+    <div class="content">
+        <h2>¿Por qué elegirnos?</h2>
+        <div class="deco">
+            <div class="line1"></div>
+            <div class="line"></div>
+            <div class="line1"></div>
+        </div>
+        <p>Descubre cómo nuestra experiencia y soluciones pueden optimizar tu empresa, automatizando procesos clave y ayudándote a tomar decisiones estratégicas con información en tiempo real.</p>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col">
+                <div class="tarjet">
+                    <h3><i class="fas fa-eye"></i> Visibilidad y Control Completo</h3>
+                    <p>
+                        ERP SIAAPI ofrece un seguimiento detallado de cada proceso empresarial, garantizando una trazabilidad completa desde la generación de cotizaciones hasta la entrega final y la satisfacción del cliente. <br /><br />
+                        Su control integral facilita el cumplimiento de estándares internacionales como ISO 9000, asegurando transparencia, eficiencia y conformidad en todas las operaciones.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="tarjet">
+                    <h3><i class="fas fa-certificate"></i> Certificación de Calidad</h3>
+                    <p>
+                        El ERP SIAAPI incorpora un sistema de gestión de calidad que permite a los especialistas evaluar cada etapa del proceso productivo. <br /><br />
+                        Esto facilita la emisión de certificados de calidad, garantizando productos que cumplen con los más altos estándares.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="tarjet">
+                    <h3><i class="fas fa-sync-alt"></i> Eliminación de Redundancias</h3>
+                    <p>
+                        ERP SIAAPI optimiza la gestión empresarial al definir y controlar cada proceso, eliminando tareas duplicadas y reduciendo desperdicios. <br /><br />
+                        Esto mejora la eficiencia operativa, permitiendo un uso más inteligente del tiempo y los recursos disponibles.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="tarjet">
+                    <h3><i class="fas fa-chart-line"></i> Análisis de Rendimiento en Tiempo Real</h3>
+                    <p>
+                        Los dashboards interactivos de ERP SIAAPI proporcionan una visión detallada del rendimiento de la producción, la eficiencia operativa y el control de inventarios, permitiendo tomar decisiones estratégicas basadas en datos precisos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="tarjet">
+                    <h3><i class="fas fa-bolt"></i> Incremento de la Productividad</h3>
+                    <p>
+                        ERP SIAAPI automatiza tareas manuales y optimiza los procesos, impulsando la productividad y rentabilidad de la empresa. <br /><br />
+                        Gracias a esta eficiencia mejorada, las operaciones se agilizan, permitiendo respuestas más rápidas y efectivas en un mercado dinámico.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="tarjet">
+                    <h3><i class="fas fa-box"></i> Gestión de Pedidos Eficiente</h3>
+                    <p>
+                        ERP SIAAPI ofrece un control detallado de cada pedido y artículo, optimizando la cadena de suministro para garantizar entregas precisas y oportunas. <br /><br />
+                        Este nivel de seguimiento mejora la experiencia del cliente, fortalece su fidelización y refuerza la competitividad del negocio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="gray" id="Resultados">
+    <div class="content">
+        <h2>Resultados</h2>
+    </div>
+    <div class="result-content">
+        <div class="result green" data-progress="17">
+            <div class="result-header">
+                <div class="date">1 año</div>
+                <svg width="17" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /></svg>
+            </div>
+            <div class="result-body">
+                <h3>Impacto en Ventas</h3>
+                <p>Crecimiento en facturación: 13-17%.</p>
+                <div class="progress"><div class="progress-bar"></div></div>
+            </div>
+            <div class="result-footer"><button class="btn-countdown" type="button">Consultar</button></div>
+        </div>
+
+        <div class="result orange" data-progress="30">
+            <div class="result-header">
+                <div class="date">1 año</div>
+                <svg width="30" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /></svg>
+            </div>
+            <div class="result-body">
+                <h3>Eficiencia en Procesos</h3>
+                <p>Reducción de órdenes de compra: 30% en el primer año gracias a la planificación anticipada de materiales.</p>
+                <div class="progress"><div class="progress-bar"></div></div>
+            </div>
+            <div class="result-footer"><button class="btn-countdown" type="button">Consultar</button></div>
+        </div>
+
+        <div class="result green" data-progress="46">
+            <div class="result-header">
+                <div class="date">2 años</div>
+                <svg width="46" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /></svg>
+            </div>
+            <div class="result-body">
+                <h3>Impacto en Ventas</h3>
+                <p>Crecimiento en facturación: 30-46%.</p>
+                <div class="progress"><div class="progress-bar"></div></div>
+            </div>
+            <div class="result-footer"><button class="btn-countdown" type="button">Consultar</button></div>
+        </div>
+
+        <div class="result blue" data-progress="61">
+            <div class="result-header">
+                <div class="date">2 años</div>
+                <svg width="61" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /></svg>
+            </div>
+            <div class="result-body">
+                <h3>Crecimiento Exponencial</h3>
+                <p>Crecimiento de la empresa entre 53-61%</p>
+                <div class="progress"><div class="progress-bar"></div></div>
+            </div>
+            <div class="result-footer"><button class="btn-countdown" type="button">Consultar</button></div>
+        </div>
+    </div>
+</section>
+
+<section class="gray" id="Testimonios">
+    <div class="content">
+        <h2>Testimonios</h2>
+        <div class="deco">
+            <div class="line1"></div>
+            <div class="line"></div>
+            <div class="line1"></div>
+        </div>
+        <p>A lo largo de nuestra trayectoria, hemos impulsado con éxito la transformación digital de nuestros clientes...</p>
+        <div class="testimonio-slider js-testimonio-slider">
+            <div class="box-gray">
+                <div class="info">
+                    <img src="~/Portada/logosclientes/logo1.jpg" alt="Classlabel" loading="lazy" />
+                    <div class="text-info">
+                        <h3 class="name">Classlabel</h3>
+                        <span class="job">Empresa privada</span>
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur.</p>
+                <div class="raiting">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+            </div>
+
+            <div class="box-gray">
+                <div class="info">
+                    <img src="~/Portada/logosclientes/logo1.jpg" alt="Delegance" loading="lazy" />
+                    <div class="text-info">
+                        <h3 class="name">Delegance</h3>
+                        <span class="job">Empresa privada</span>
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur.</p>
+                <div class="raiting">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="white" id="planes">
+    <div class="content">
+        <h2>Planes</h2>
+        <div class="deco">
+            <div class="line1"></div>
+            <div class="line"></div>
+            <div class="line1"></div>
+        </div>
+        <p>SIAAPI es un software que requiere una inversión inicial única para su implementación...</p>
+    </div>
+
+    <div class="box-container">
+        <!-- Cards -->
+        <div class="card cyan-theme" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="lines"></div>
+                    <div class="hexagon"></div><div class="hexagon"></div><div class="hexagon"></div>
+                    <div class="hexagon"></div><div class="hexagon"></div><div class="hexagon"></div><div class="hexagon"></div>
+                    <div class="text"><h1>Kit Debugger</h1><p>Kit Básico</p></div>
+                </div>
+                <div class="flip-card-back">
+                    <h3 style="color:#00AEEF;">Kit Debugger</h3><br />
+                    <ul class="checklist">
+                        <li>Gestión de clientes y proveedores</li>
+                        <li>Control de inventario básico</li>
+                        <li>Facturación electrónica</li>
+                        <li>Reportes estándar</li>
+                        <li>Acceso para 1-3 usuarios</li>
+                        <li>Soporte técnico por correo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card navy-theme" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="lines"></div>
+                    <div class="hexagon"></div><div class="hexagon"></div><div class="hexagon"></div>
+                    <div class="hexagon"></div><div class="hexagon"></div><div class="hexagon"></div><div class="hexagon"></div>
+                    <div class="text"><h1>Kit Compiler</h1><p>Kit Recomendado</p></div>
+                </div>
+                <div class="flip-card-back">
+                    <h3 style="color:#0074E4;">Kit Compiler</h3><br />
+                    <ul class="checklist">
+                        <li>Todo lo del Plan Básico</li>
+                        <li>Control de cuentas por cobrar y pagar</li>
+                        <li>Gestión de órdenes de compra</li>
+                        <li>Reportes personalizables</li>
+                        <li>Acceso para 4-10 usuarios</li>
+                        <li>Soporte por correo y chat</li>
+                        <li>Integración con sistemas contables</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card gold-theme" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="lines"></div>
+                    <div class="hexagon"></div><div class="hexagon"></div><div class="hexagon"></div>
+                    <div class="hexagon"></div><div class="hexagon"></div><div class="hexagon"></div><div class="hexagon"></div>
+                    <div class="text"><h1>Kit Framework</h1><p>Kit Élite</p></div>
+                </div>
+                <div class="flip-card-back">
+                    <h3 style="color:gold;">Kit Framework</h3><br />
+                    <ul class="checklist">
+                        <li>Todo lo del Plan Intermedio</li>
+                        <li>Automatización de procesos administrativos</li>
+                        <li>Control avanzado de producción y logística</li>
+                        <li>API para integraciones personalizadas</li>
+                        <li>Analítica en tiempo real</li>
+                        <li>+10 usuarios</li>
+                        <li>Soporte prioritario</li>
+                        <li>Nube ampliada</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <button class="btn btn__primary" type="button">
+        <span style="font-size:18px;">Agendar Demo</span>
+    </button>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="colm" id="company-social">
+                <div id="company">
+                    <img src="~/Portada/images/Abak.png" alt="ABAK" class="logo" loading="lazy" />
+                    <p style="font-size:18px;">Desarrollamos soluciones ERP automatizadas para optimizar empresas de producción.</p>
+                </div>
+                <div id="Social" aria-label="Redes sociales">
+                    <a href="https://www.facebook.com/profile.php?id=100085644415758" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/tu-perfil" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://wa.me/tu-numero-de-whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="colm" id="Servicios">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="#">Consultoría</a></li>
+                    <li><a href="#">Desarrollo ERP</a></li>
+                    <li><a href="#">Soporte Técnico</a></li>
+                </ul>
+            </div>
+
+            <div class="colm" id="useful-links">
+                <h4>Enlaces útiles</h4>
+                <ul>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="colm" id="contact">
+                <h4>Contacto</h4>
+                <p style="font-size:18px;">Soporte@erp-abak.com</p>
+                <p style="font-size:18px;">Teléfono: +1 234 567 890</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+@section Scripts {
+    <script>
+        // Mostrar/ocultar botón scroll to top y cambiar navbar
+        window.addEventListener("scroll", function () {
+          const btn = document.querySelector(".scroll-to-top-btn");
+          if (btn) btn.style.display = window.scrollY > 200 ? "block" : "none";
+
+          const navbar = document.querySelector(".navbar");
+          if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 50);
+        });
+
+        // Scroll suave al top
+        document.querySelector(".scroll-to-top-btn")?.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Progreso de barras en Resultados
+        document.addEventListener("DOMContentLoaded", function () {
+          document.querySelectorAll(".result").forEach(function (result) {
+            const bar = result.querySelector(".progress-bar");
+            const val = result.getAttribute("data-progress");
+            if (bar && val) bar.style.width = val + "%";
+          });
+        });
+
+        // Flip de tarjetas
+        window.flipCard = function (el) { el.classList.toggle("flipped"); };
+    </script>
+}
