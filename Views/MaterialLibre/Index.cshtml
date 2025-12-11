@@ -1,0 +1,573 @@
+﻿@{
+    ViewData["Title"] = "Material libre";
+}
+
+<style>
+    :root {
+        --abak-panel: #041829;
+        --abak-accent: #00f6ff;
+        --abak-accent-soft: rgba(0, 246, 255, 0.18);
+        --abak-accent-strong: #00ffa8;
+        --abak-text: #e5f3ff;
+        --abak-text-soft: #9fb3d9;
+    }
+
+    body {
+        background: radial-gradient(circle at top, #1c89ff 0, #020817 42%, #000000 100%);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--abak-text);
+    }
+
+    .abak-page {
+        max-width: 1180px;
+        margin: 0 auto 40px;
+        padding: 32px 16px 40px;
+    }
+
+    .abak-nav-row {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+
+    .abak-nav-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 255, 255, 0.28);
+        background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.22), #03101d);
+        color: var(--abak-text);
+        text-decoration: none;
+        font-size: 0.9rem;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.65);
+        transition: all 0.18s ease-out;
+    }
+
+        .abak-nav-pill span.icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.55);
+            font-size: 0.9rem;
+        }
+
+        .abak-nav-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+            border-color: var(--abak-accent-strong);
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+    .abak-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 18px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(0, 255, 180, 0.14), rgba(0, 255, 255, 0.08));
+        color: var(--abak-text-soft);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border: 1px solid rgba(0, 255, 210, 0.35);
+        margin-bottom: 18px;
+    }
+
+    .abak-badge-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: radial-gradient(circle, #00ffc3 0, #00bcd4 60%, #005a96 100%);
+        box-shadow: 0 0 10px rgba(0, 255, 210, 0.9);
+    }
+
+    .abak-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+        gap: 24px;
+        margin-bottom: 26px;
+    }
+
+    .abak-panel {
+        border-radius: 26px;
+        padding: 26px 26px 26px;
+        background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.18), rgba(2, 10, 25, 0.98));
+        border: 1px solid rgba(0, 255, 255, 0.18);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 40px rgba(0, 200, 255, 0.16);
+    }
+
+    .abak-panel-main {
+        background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.22), #020b17);
+    }
+
+    .abak-panel h1 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        margin-bottom: 14px;
+    }
+
+    .abak-user-tag {
+        margin: 6px 0 18px;
+        padding: 12px 20px;
+        border-radius: 999px;
+        background: radial-gradient(circle at left, rgba(0, 255, 210, 0.4), rgba(0, 18, 32, 0.96));
+        border: 1px solid rgba(0, 255, 210, 0.55);
+        color: var(--abak-text);
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .abak-user-label {
+        font-weight: 500;
+        color: var(--abak-text-soft);
+    }
+
+    .abak-body-text {
+        color: var(--abak-text-soft);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 16px;
+    }
+
+    .abak-section-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--abak-accent-strong);
+        margin-bottom: 8px;
+    }
+
+    .abak-columns {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 18px;
+        margin-top: 10px;
+    }
+
+        .abak-columns ul {
+            padding-left: 18px;
+            margin: 0;
+            color: var(--abak-text-soft);
+            font-size: 0.94rem;
+        }
+
+        .abak-columns li + li {
+            margin-top: 4px;
+        }
+
+    .abak-note {
+        margin-top: 14px;
+        font-size: 0.85rem;
+        color: var(--abak-text-soft);
+        font-style: italic;
+    }
+
+    .abak-panel-assistant {
+        background: radial-gradient(circle at top, rgba(0, 255, 255, 0.22), #020b18);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+        .abak-panel-assistant h2 {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+    .abak-label-pill {
+        display: inline-block;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--abak-text-soft);
+        margin-bottom: 8px;
+    }
+
+    .abak-assistant-feature {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 255, 255, 0.25);
+        background: radial-gradient(circle at left, rgba(0, 255, 255, 0.18), rgba(1, 15, 28, 0.96));
+        font-size: 0.9rem;
+        color: var(--abak-text-soft);
+    }
+
+        .abak-assistant-feature b {
+            color: #ffffff;
+        }
+
+    .sak-bot {
+        margin-top: 26px;
+        display: flex;
+        justify-content: center;
+    }
+
+        .sak-bot img {
+            max-width: 180px;
+            height: auto;
+            filter: drop-shadow(0 12px 30px rgba(0, 255, 255, 0.45));
+            animation: floatBot 6s ease-in-out infinite;
+        }
+
+    @@keyframes floatBot {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    /* ====== RECURSOS DESCARGABLES (PDF) ====== */
+
+    .ml-section {
+        margin-top: 30px;
+        border-radius: 26px;
+        padding: 22px 26px 26px;
+        background: radial-gradient(circle at top, rgba(0, 122, 255, 0.22), #020b18);
+        border: 1px solid rgba(0, 255, 255, 0.16);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+    }
+
+    .ml-title {
+        margin: 0 0 6px;
+        font-size: 1.1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--abak-accent-strong);
+    }
+
+    .ml-sub {
+        font-size: 0.9rem;
+        color: var(--abak-text-soft);
+        margin-bottom: 14px;
+    }
+
+    .ml-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 18px;
+    }
+
+    .ml-tab {
+        padding: 14px 18px;
+        border-radius: 18px;
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        background: radial-gradient(circle at top left, rgba(16, 185, 129, 0.12), rgba(3, 18, 32, 0.98));
+        color: var(--abak-text-soft);
+        cursor: pointer;
+        text-align: left;
+        transition: all 0.18s ease-out;
+        font-size: 0.9rem;
+    }
+
+        .ml-tab strong {
+            display: block;
+            font-size: 0.98rem;
+            color: #f9fafb;
+            margin-bottom: 4px;
+        }
+
+        .ml-tab span.badge {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            opacity: 0.85;
+            margin-bottom: 4px;
+        }
+
+        .ml-tab.active {
+            border-color: #22c55e;
+            box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.5), 0 16px 30px rgba(0, 0, 0, 0.8);
+            background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.3), rgba(3, 18, 32, 0.98));
+        }
+
+    .ml-viewer-box {
+        margin-top: 10px;
+        border-radius: 22px;
+        background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), #020617);
+        border: 1px solid rgba(15, 23, 42, 0.9);
+        padding: 14px 16px 18px;
+        color: var(--abak-text-soft);
+    }
+
+    .ml-viewer-header {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    .ml-viewer-title {
+        font-weight: 600;
+        color: #e5f3ff;
+    }
+
+    .ml-iframe-wrapper {
+        border-radius: 16px;
+        overflow: hidden;
+        background: #020617;
+        border: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+        .ml-iframe-wrapper iframe {
+            width: 100%;
+            height: 520px;
+            border: none;
+            background: #000;
+        }
+
+    .ml-actions {
+        margin-top: 10px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .ml-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.16s ease-out;
+        border: 1px solid transparent;
+        background: radial-gradient(circle at top, #00c6ff, #00ffbf);
+        color: #020617;
+        font-weight: 600;
+    }
+
+        .ml-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.8);
+            text-decoration: none;
+        }
+
+    @@media (max-width: 980px) {
+        .abak-grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .abak-nav-row {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .ml-tabs {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .abak-panel,
+        .ml-section {
+            padding-inline: 18px;
+        }
+    }
+
+    @@media (max-width: 640px) {
+        .sak-bot img {
+            max-width: 140px;
+        }
+    }
+</style>
+
+<section class="abak-page">
+    <!-- NAVEGACIÓN SUPERIOR -->
+    <div class="abak-nav-row">
+        <a asp-controller="Home" asp-action="Index" class="abak-nav-pill">
+            <span class="icon">🏠</span>
+            <span>Volver al inicio</span>
+        </a>
+        <a asp-controller="ManualAyuda" asp-action="Index" class="abak-nav-pill">
+            <span class="icon">📘</span>
+            <span>Ir al manual de ayuda</span>
+        </a>
+        <a asp-controller="Capacitacion" asp-action="Index" class="abak-nav-pill">
+            <span class="icon">🎓</span>
+            <span>Ir a capacitación</span>
+        </a>
+    </div>
+
+    <span class="abak-badge">
+        <span class="abak-badge-dot"></span>
+        Material libre · Recursos descargables
+    </span>
+
+    <!-- PANEL PRINCIPAL + ASISTENTE -->
+    <div class="abak-grid">
+        <!-- Panel principal -->
+        <article class="abak-panel abak-panel-main">
+            <h1>Material libre</h1>
+
+            @if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                <div class="abak-user-tag">
+                    <span class="abak-user-label">Estás autenticado como</span>
+                    <strong>@User.Identity!.Name</strong>
+                   
+                </div>
+            }
+
+            <p class="abak-body-text">
+                Este apartado funciona como una pequeña biblioteca de recursos descargables. Aquí se publican
+                plantillas y manuales en PDF que acompañan el trabajo diario y se pueden guardar para usarlos cuando
+                sea necesario.
+            </p>
+
+            <div class="abak-columns">
+                <div>
+                    <div class="abak-section-title">Recursos que tienes disponibles</div>
+                    <ul>
+                        <li>
+                            <strong>Control de inventarios</strong> – Manual practico diseñado para ayudarte a estender, organizar y optimizar tu inventario.
+                        </li>
+                        <li>
+                            <strong>Manual de control de gastos</strong> – Guía enfocada rn rl control sobre todos los niveles de gasto, incluyendo los considerados minimos.
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="abak-section-title">Cómo aprovechar este apartado</div>
+                    <ul>
+                        <li>Abre el PDF en el visor para revisar el contenido directamente en el navegador.</li>
+                        <li>Descarga el archivo cuando quieras trabajar con él localmente o compartirlo con tu equipo.</li>
+                        <li>Utiliza los recursos como complemento de las sesiones de capacitación o del trabajo diario.</li>
+                    </ul>
+                </div>
+            </div>
+
+ 
+        </article>
+
+        <!-- Panel asistente -->
+        <aside class="abak-panel abak-panel-assistant">
+            <span class="abak-label-pill">Asistente ABAK</span>
+            <h2>SAK material libre</h2>
+
+            <p class="abak-body-text" style="margin-bottom:10px;">
+                El área de material libre concentra documentos prácticos: formatos, guías rápidas y otros archivos que
+                complementan el uso del sistema.
+            </p>
+
+            <div class="abak-assistant-feature">
+                <b>Formato listo para usar</b>
+                <span>solo tienes que descargar el PDF y comenzar a llenarlo.</span>
+            </div>
+            <div class="abak-assistant-feature">
+                <b>Consulta rápida</b>
+                <span>los documentos se pueden revisar sin salir de la página.</span>
+            </div>
+            <div class="abak-assistant-feature">
+                <b>Apoyo diario</b>
+                <span>pensado para apoyar tareas de inventarios y control de gastos.</span>
+            </div>
+
+            <div class="sak-bot">
+                <img src="~/Portada/images/Sak/Sak.principal.png" alt="SAK material libre" />
+            </div>
+        </aside>
+    </div>
+
+    <!-- ========= RECURSOS DESCARGABLES ========= -->
+    <section class="ml-section">
+        <h3 class="ml-title">Recursos descargables</h3>
+        <p class="ml-sub">
+            Selecciona un recurso para verlo en el visor integrado. Desde aquí también puedes abrir el PDF o descargarlo para trabajarlo localmente.
+        </p>
+
+        <!-- Tarjetas de recursos -->
+        <div class="ml-tabs">
+            <button class="ml-tab active"
+                    data-title="Control de inventarios"
+                    data-pdf="@Url.Content("~/Portada/RecursosLibres/Control de inventarios (1).pdf")">
+                <span class="badge">RECURSO 1</span>
+                <strong>Control de inventarios</strong>
+                <span>Manual Practico Mentalidad Ganadora: El orden diario ahorra miles cada mes.</span>
+            </button>
+
+            <button class="ml-tab"
+                    data-title="Manual de control de gastos"
+                    data-pdf="@Url.Content("~/Portada/RecursosLibres/Manual de control de gastos (1).pdf")">
+                <span class="badge">RECURSO 2</span>
+                <strong>Manual de control de gastos</strong>
+                <span>Los gastos hormiga estan devorando tu empresa.</span>
+            </button>
+        </div>
+
+        <!-- Visor -->
+        <div class="ml-viewer-box">
+            <div class="ml-viewer-header">
+                Vista previa · <span id="ml-viewer-title" class="ml-viewer-title">Control de inventarios</span>
+            </div>
+
+            <div class="ml-iframe-wrapper">
+                <!-- src inicial para que funcione incluso si falla el script -->
+                <iframe id="ml-pdf-frame"
+                        src="@Url.Content("~/Portada/RecursosLibres/Control de inventarios (1).pdf")"
+                        title="Vista previa de recursos descargables">
+                </iframe>
+            </div>
+
+            <div class="ml-actions">
+                <a id="ml-pdf-link"
+                   class="ml-btn"
+                   target="_blank"
+                   href="@Url.Content("~/Portada/RecursosLibres/Control de inventarios (1).pdf")">
+                    Ver / descargar PDF
+                </a>
+            </div>
+        </div>
+    </section>
+</section>
+
+@section Scripts {
+    <script>
+        (function () {
+            const buttons = document.querySelectorAll('.ml-tab');
+            const iframe = document.getElementById('ml-pdf-frame');
+            const pdfLink = document.getElementById('ml-pdf-link');
+            const titleSpan = document.getElementById('ml-viewer-title');
+
+            if (!buttons.length || !iframe || !pdfLink || !titleSpan) {
+                return;
+            }
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const pdf = btn.getAttribute('data-pdf');
+                    const title = btn.getAttribute('data-title');
+
+                    if (pdf) {
+                        iframe.src = pdf;
+                        pdfLink.href = pdf;
+                    }
+
+                    if (title) {
+                        titleSpan.textContent = title;
+                    }
+                });
+            });
+        })();
+    </script>
+}

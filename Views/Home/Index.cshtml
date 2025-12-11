@@ -18,6 +18,195 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <style>
+        /* Para que el botón de Cerrar sesión se vea como los links del menú (se usa dentro del chip) */
+        .navbar .logout-form {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ---------- CHIP DE USUARIO EN EL NAVBAR ---------- */
+
+        .navbar .user-chip {
+            position: relative;
+            margin-left: 0.5rem;
+        }
+
+        .user-chip-toggle {
+            background: transparent;
+            border: none;
+            color: inherit;
+            font: inherit;
+            padding: 0.35rem 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 999px;
+            transition: background 0.15s ease, box-shadow 0.15s ease;
+        }
+
+            .user-chip-toggle:hover {
+                background: rgba(255, 255, 255, 0.08);
+                box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
+            }
+
+            .user-chip-toggle .chevron {
+                font-size: 0.7rem;
+                transition: transform 0.15s ease;
+            }
+
+        .user-chip.open .chevron {
+            transform: rotate(180deg);
+        }
+
+        .user-chip-menu {
+            position: absolute;
+            right: 0;
+            top: calc(100% + 6px);
+            min-width: 230px;
+            background: rgba(5, 10, 24, 0.96);
+            color: #f5f7ff;
+            border-radius: 14px;
+            padding: 0.75rem 1rem;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-4px);
+            transition: opacity 0.15s ease, transform 0.15s ease;
+            z-index: 999;
+        }
+
+        .user-chip.open .user-chip-menu {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .user-chip-email {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            word-break: break-all;
+        }
+
+            .user-chip-email i {
+                font-size: 0.9rem;
+                color: #00e6ff;
+            }
+
+        /* --- NUEVO: botón "Mi perfil" dentro del menú del usuario --- */
+        .user-chip-profile-btn {
+            width: 100%;
+            border-radius: 999px;
+            padding: 0.45rem 0.85rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #0b1020;
+            background: #f4f7ff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            margin-bottom: 0.55rem;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+            transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+            .user-chip-profile-btn:hover {
+                background: #ffffff;
+                transform: translateY(-1px);
+                box-shadow: 0 9px 20px rgba(0, 0, 0, 0.55);
+            }
+
+        .user-chip-logout-btn {
+            width: 100%;
+            border: none;
+            border-radius: 999px;
+            padding: 0.45rem 0.85rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            background: #ff4a4a;
+            color: #ffffff;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+            transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+            .user-chip-logout-btn:hover {
+                background: #ff2340;
+                transform: translateY(-1px);
+                box-shadow: 0 10px 22px rgba(0, 0, 0, 0.55);
+            }
+
+        /* ---------- HERO / PRESENTACIÓN ---------- */
+
+        /* Centrar mejor el logo grande en el hero */
+        .presentacion {
+            text-align: center;
+        }
+
+            .presentacion > img {
+                margin-top: 9rem; /* baja un poco el logo para que no quede tan pegado arriba */
+                margin-bottom: -2rem;
+            }
+
+        /* ---------- BOTONES DE ACCESO RÁPIDO BAJO "EXPLORA" ---------- */
+
+        .access-modules {
+            margin-top: 0.2rem; /* espacio entre Explora y los 3 botones */
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+            .access-modules .module-btn {
+                min-width: 200px;
+                padding: 0.75rem 1.7rem;
+                border-radius: 999px;
+                border: none;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: #0b1020;
+                background: rgba(255, 255, 255, 0.92);
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(6px);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+            }
+
+                .access-modules .module-btn:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+                    background: #ffffff;
+                }
+
+                .access-modules .module-btn i {
+                    font-size: 1rem;
+                }
+
+        /* OJO: en Razor se escribe @@media para que salga en el CSS */
+        @@media (max-width: 768px) {
+            .access-modules {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 }
 
 <!-- Accesibilidad: enlace para saltar al contenido -->
@@ -71,13 +260,135 @@
                 <span class="nav-text">Demo</span>
             </a>
         </li>
+
+        @* --- ENLACES SEGÚN USUARIO AUTENTICADO --- *@
+        @if (User?.Identity?.IsAuthenticated ?? false)
+        {
+            @* Solo el administrador ve el Historial y el Panel Admin *@
+            if (User.IsInRole("Admin") ||
+            User.Identity!.Name?.ToLower() == "admin@erp-abak.com")
+            {
+                <li class="home">
+                    <a asp-controller="HistorialAccesos" asp-action="Index">
+                        <i class="fas fa-clipboard-list" aria-hidden="true"></i>
+                        <span class="nav-text">Historial</span>
+                    </a>
+                </li>
+                <li class="home">
+                    <a asp-controller="Admin" asp-action="Index">
+                        <i class="fas fa-user-shield" aria-hidden="true"></i>
+                        <span class="nav-text">Admin</span>
+                    </a>
+                </li>
+            }
+
+            <li class="home user-chip">
+                <button type="button"
+                        class="user-chip-toggle"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    <span class="user-chip-name">@User.Identity!.Name</span>
+                    <i class="fas fa-chevron-down chevron" aria-hidden="true"></i>
+                </button>
+
+                <div class="user-chip-menu" role="menu">
+                    <div class="user-chip-email">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <span>@User.Identity!.Name</span>
+                    </div>
+
+                    @* NUEVO: enlace directo al perfil del usuario *@
+                    <a asp-area="Identity"
+                       asp-page="/Account/Manage/Index"
+                       class="user-chip-profile-btn"
+                       role="menuitem">
+                        <i class="fas fa-user-circle" aria-hidden="true"></i>
+                        <span>Mi perfil</span>
+                    </a>
+
+                    <form asp-area="Identity"
+                          asp-page="/Account/Logout"
+                          asp-route-returnUrl="~/"
+                          method="post"
+                          class="logout-form">
+                        <button type="submit" class="user-chip-logout-btn">
+                            <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
+                            <span>Cerrar sesión</span>
+                        </button>
+                    </form>
+                </div>
+            </li>
+        }
+        else
+        {
+            <li class="home">
+                <a asp-area="Identity" asp-page="/Account/Login">
+                    <i class="fas fa-right-to-bracket" aria-hidden="true"></i>
+                    <span class="nav-text">Iniciar sesión</span>
+                </a>
+            </li>
+            <li class="home">
+                <a asp-area="Identity" asp-page="/Account/Register">
+                    <i class="fas fa-user-plus" aria-hidden="true"></i>
+                    <span class="nav-text">Registrarse</span>
+                </a>
+            </li>
+        }
     </ul>
 </nav>
 
 <div class="presentacion">
-    <!-- Renombra ese archivo con espacios cuando puedas. Mientras, URL-encode. -->
     <img src="~/Portada/images/Abak%20blanco%20s.png" alt="Logo Abak" loading="lazy" />
     <a href="#about-us">Explora</a>
+
+    @* Botones de acceso directo a los módulos *@
+    <div class="access-modules">
+        @if (User?.Identity?.IsAuthenticated ?? false)
+        {
+            <!-- Ya logueado: lo llevamos directo a la sección -->
+            <a class="module-btn" asp-controller="ManualAyuda" asp-action="Index">
+                <i class="fas fa-book-open"></i>
+                <span>Manual de ayuda</span>
+            </a>
+            <a class="module-btn" asp-controller="Capacitacion" asp-action="Index">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Capacitación</span>
+            </a>
+            <a class="module-btn" asp-controller="MaterialLibre" asp-action="Index">
+                <i class="fas fa-folder-open"></i>
+                <span>Material libre</span>
+            </a>
+        }
+        else
+        {
+            <!-- Sin sesión: primero Registro con la sección correspondiente -->
+            <a class="module-btn"
+               asp-area="Identity"
+               asp-page="/Account/Register"
+               asp-route-seccion="ManualAyuda"
+               asp-route-returnUrl="~/ManualAyuda">
+                <i class="fas fa-book-open"></i>
+                <span>Manual de ayuda</span>
+            </a>
+            <a class="module-btn"
+               asp-area="Identity"
+               asp-page="/Account/Register"
+               asp-route-seccion="Capacitacion"
+               asp-route-returnUrl="~/Capacitacion">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Capacitación</span>
+            </a>
+            <a class="module-btn"
+               asp-area="Identity"
+               asp-page="/Account/Register"
+               asp-route-seccion="MaterialLibre"
+               asp-route-returnUrl="~/MaterialLibre">
+                <i class="fas fa-folder-open"></i>
+                <span>Material libre</span>
+            </a>
+        }
+    </div>
 </div>
 
 <section class="about-us" id="about-us">
@@ -154,7 +465,7 @@
                 <div class="tarjet">
                     <h3><i class="fas fa-chart-line"></i> Análisis de Rendimiento en Tiempo Real</h3>
                     <p>
-                        Los dashboards interactivos de ERP SIAAPI proporcionan una visión detallada del rendimiento de la producción, la eficiencia operativa y el control de inventarios, permitiendo tomar decisiones estratégicas basadas en datos precisos.
+                        Los dashboards interactivos de ERP SIAAPI proporcionan una visión detallada del rendimiento de la producción, la eficiencia operativa y el control de inventarios, permitiendo tomar decisiones estratégicas basadas en datos precisos।
                     </p>
                 </div>
             </div>
@@ -366,9 +677,10 @@
     </div>
 
     <br />
-    <button class="btn btn__primary" type="button">
+    <!-- Agendar Demo ahora navega al controlador Demo -->
+    <a class="btn btn__primary" asp-controller="Demo" asp-action="Index">
         <span style="font-size:18px;">Agendar Demo</span>
-    </button>
+    </a>
 </section>
 
 <footer>
@@ -417,28 +729,67 @@
     <script>
         // Mostrar/ocultar botón scroll to top y cambiar navbar
         window.addEventListener("scroll", function () {
-          const btn = document.querySelector(".scroll-to-top-btn");
-          if (btn) btn.style.display = window.scrollY > 200 ? "block" : "none";
+            const btn = document.querySelector(".scroll-to-top-btn");
+            if (btn) btn.style.display = window.scrollY > 200 ? "block" : "none";
 
-          const navbar = document.querySelector(".navbar");
-          if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 50);
+            const navbar = document.querySelector(".navbar");
+            if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 50);
         });
 
         // Scroll suave al top
         document.querySelector(".scroll-to-top-btn")?.addEventListener("click", function () {
-          window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
         // Progreso de barras en Resultados
         document.addEventListener("DOMContentLoaded", function () {
-          document.querySelectorAll(".result").forEach(function (result) {
-            const bar = result.querySelector(".progress-bar");
-            const val = result.getAttribute("data-progress");
-            if (bar && val) bar.style.width = val + "%";
-          });
+            document.querySelectorAll(".result").forEach(function (result) {
+                const bar = result.querySelector(".progress-bar");
+                const val = result.getAttribute("data-progress");
+                if (bar && val) bar.style.width = val + "%";
+            });
         });
 
         // Flip de tarjetas
         window.flipCard = function (el) { el.classList.toggle("flipped"); };
+
+        // Menú desplegable del usuario (chip) en el navbar
+        document.addEventListener("DOMContentLoaded", function () {
+            const userChip = document.querySelector(".user-chip");
+            if (!userChip) return;
+
+            const toggle = userChip.querySelector(".user-chip-toggle");
+
+            const closeMenu = () => {
+                userChip.classList.remove("open");
+                toggle.setAttribute("aria-expanded", "false");
+            };
+
+            const openMenu = () => {
+                userChip.classList.add("open");
+                toggle.setAttribute("aria-expanded", "true");
+            };
+
+            toggle.addEventListener("click", function (e) {
+                e.stopPropagation();
+                if (userChip.classList.contains("open")) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            document.addEventListener("click", function (e) {
+                if (!userChip.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") {
+                    closeMenu();
+                }
+            });
+        });
     </script>
 }

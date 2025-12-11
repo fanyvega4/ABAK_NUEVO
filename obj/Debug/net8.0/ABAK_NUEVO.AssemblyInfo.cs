@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ABAK_NUEVO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1c6a62a64f6478183b99572539f013862b86910")]
 [assembly: System.Reflection.AssemblyProductAttribute("ABAK_NUEVO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ABAK_NUEVO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

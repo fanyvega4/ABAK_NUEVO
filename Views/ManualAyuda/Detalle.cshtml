@@ -1,0 +1,206 @@
+﻿@model ABAK_NUEVO.Models.ManualAyuda.ArticuloAyuda
+
+@{
+    ViewData["Title"] = Model.Titulo;
+}
+
+<style>
+    .detalle-shell {
+        padding: 32px 16px 56px;
+        background: radial-gradient(circle at top, #1ae4ff 0, #050816 42%, #000 100%);
+        min-height: calc(100vh - 80px);
+        color: #e5f2ff;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .detalle-container {
+        max-width: 920px;
+        margin: 0 auto;
+    }
+
+    .detalle-card {
+        background: linear-gradient(145deg, rgba(6, 15, 32, 0.98), rgba(7, 25, 62, 0.98));
+        border-radius: 24px;
+        border: 1px solid rgba(0, 255, 255, 0.25);
+        padding: 22px 24px 26px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.78);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .detalle-card::before {
+            content: "";
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.18), transparent 70%);
+            top: -18%;
+            left: -20%;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+    .detalle-card-inner {
+        position: relative;
+        z-index: 1;
+    }
+
+    .detalle-back {
+        margin-bottom: 10px;
+    }
+
+        .detalle-back a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 255, 255, 0.4);
+            background: rgba(6, 25, 60, 0.9);
+            color: #e5f2ff;
+            font-size: 0.82rem;
+            text-decoration: none;
+        }
+
+            .detalle-back a:hover {
+                text-decoration: none;
+                box-shadow: 0 10px 24px rgba(0, 0, 0, 0.75);
+                transform: translateY(-1px);
+            }
+
+    .detalle-title {
+        font-size: 1.85rem;
+        font-weight: 750;
+        margin-bottom: 6px;
+    }
+
+    .detalle-meta {
+        font-size: 0.82rem;
+        color: #9fb3ff;
+        margin-bottom: 12px;
+    }
+
+        .detalle-meta strong {
+            color: #00ffa0;
+        }
+
+    .detalle-resumen {
+        font-style: italic;
+        color: #c7d7ff;
+        font-size: 0.95rem;
+        margin-bottom: 14px;
+    }
+
+    .detalle-divider {
+        border-bottom: 1px solid rgba(0, 255, 255, 0.18);
+        margin: 10px 0 18px;
+    }
+
+    .detalle-content {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #dde7ff;
+    }
+
+        .detalle-content h2,
+        .detalle-content h3,
+        .detalle-content h4 {
+            color: #ffffff;
+            margin-top: 14px;
+        }
+
+        .detalle-content ul,
+        .detalle-content ol {
+            margin-left: 1.25rem;
+        }
+
+    .detalle-bottom-actions {
+        margin-top: 22px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .detalle-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 255, 255, 0.4);
+        background: linear-gradient(135deg, rgba(0, 255, 255, 0.09), rgba(0, 255, 160, 0.05));
+        color: #e5f2ff;
+        font-size: 0.82rem;
+        text-decoration: none;
+    }
+
+        .detalle-btn:hover {
+            text-decoration: none;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.7);
+            transform: translateY(-1px);
+        }
+
+    @@media (max-width: 768px) {
+        .detalle-shell {
+            padding: 22px 12px 36px;
+        }
+
+        .detalle-card {
+            padding: 18px 16px 22px;
+        }
+
+        .detalle-title {
+            font-size: 1.55rem;
+        }
+    }
+</style>
+
+<div class="detalle-shell">
+    <div class="detalle-container">
+        <div class="detalle-card">
+            <div class="detalle-card-inner">
+                <div class="detalle-back">
+                    <a asp-action="Index">
+                        <i class="fas fa-arrow-left"></i>
+                        Volver al listado
+                    </a>
+                </div>
+
+                <h1 class="detalle-title">@Model.Titulo</h1>
+
+                <div class="detalle-meta">
+                    Publicado el @Model.FechaPublicacion.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
+                    @if (!string.IsNullOrWhiteSpace(Model.Categoria))
+                    {
+                        @: · Categoría: <strong>@Model.Categoria</strong>
+                    }
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(Model.Resumen))
+                {
+                    <p class="detalle-resumen">
+                        @Model.Resumen
+                    </p>
+                }
+
+                <div class="detalle-divider"></div>
+
+                <div class="detalle-content">
+                    @Html.Raw(Model.ContenidoHtml)
+                </div>
+
+                <div class="detalle-bottom-actions">
+                    <a asp-controller="Home" asp-action="Index" class="detalle-btn">
+                        <i class="fas fa-home"></i>
+                        Ir al inicio
+                    </a>
+                    <a asp-controller="Capacitacion" asp-action="Index" class="detalle-btn">
+                        <i class="fas fa-graduation-cap"></i>
+                        Ir a capacitación
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

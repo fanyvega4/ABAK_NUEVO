@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="~/Portada/Css/Gstyle.css" />
     <link rel="stylesheet" href="~/Portada/Css/Index.css" />
     <link rel="stylesheet" href="~/Portada/Css/Buttons.css" />
+    <!-- AGREGADO: Nuevo CSS para las tarjetas seleccionables -->
+    <link rel="stylesheet" href="~/Portada/Css/Servicios.css" />
     <link rel="icon" href="~/Portada/images/Abak.ico" type="image/x-icon" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -30,7 +32,7 @@
                 <div class="name">Servicios</div>
                 <div class="title">Administración</div>
                 <div class="des">➤Centraliza datos y procesos.<br>➤ Mejora la toma de decisiones.<br>➤ Automatiza tareas clave.</div>
-                <button type="button">Ver más</button>
+                <button type="button" class="ver-mas-btn" data-servicio="administracion">Ver más</button>
             </div>
         </div>
 
@@ -40,7 +42,7 @@
                 <div class="name">Servicios</div>
                 <div class="title">Almacenes</div>
                 <div class="des">➤ Reduce pérdidas y robos.<br>➤ Optimiza entradas y salidas.<br>➤ Gestión en tiempo real.</div>
-                <button type="button">Ver más</button>
+                <button type="button" class="ver-mas-btn" data-servicio="almacenes">Ver más</button>
             </div>
         </div>
 
@@ -50,7 +52,7 @@
                 <div class="name">Servicios</div>
                 <div class="title">Facturación</div>
                 <div class="des">➤ Genera facturas en segundos.<br>➤ Cumple normativas fiscales.<br>➤ Reduce errores manuales.</div>
-                <button type="button">Ver más</button>
+                <button type="button" class="ver-mas-btn" data-servicio="facturacion">Ver más</button>
             </div>
         </div>
 
@@ -60,7 +62,7 @@
                 <div class="name">Servicios</div>
                 <div class="title">Logística</div>
                 <div class="des">➤ Rastreo preciso de envíos.<br>➤ Reducción de costos operativos.<br>➤ Planificación eficiente de rutas.</div>
-                <button type="button">Ver más</button>
+                <button type="button" class="ver-mas-btn" data-servicio="logistica">Ver más</button>
             </div>
         </div>
 
@@ -70,7 +72,7 @@
                 <div class="name">Servicios</div>
                 <div class="title">Producción</div>
                 <div class="des">➤ Control de insumos y tiempos.<br>➤ Automatización de procesos.<br>➤ Mejora la calidad del producto.</div>
-                <button type="button">Ver más</button>
+                <button type="button" class="ver-mas-btn" data-servicio="produccion">Ver más</button>
             </div>
         </div>
 
@@ -80,7 +82,7 @@
                 <div class="name">Servicios</div>
                 <div class="title">Ventas</div>
                 <div class="des">➤ Seguimiento de clientes y pedidos.<br>➤ Reportes en tiempo real.<br>➤ Integración multicanal.</div>
-                <button type="button">Ver más</button>
+                <button type="button" class="ver-mas-btn" data-servicio="ventas">Ver más</button>
             </div>
         </div>
     </div>
@@ -101,8 +103,274 @@
     <div class="time"></div>
 </section>
 
+<!-- NUEVA SECCIÓN AGREGADA: Tarjetas seleccionables de servicios -->
+<section class="servicios-seleccionables">
+    <!-- Elementos decorativos flotantes -->
+    <div class="glow-effect glow-1"></div>
+    <div class="glow-effect glow-2"></div>
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+
+    <div class="servicios-header">
+        <h1>Nuestros Servicios</h1>
+        <p>Selecciona un servicio para ver información detallada sobre sus características y beneficios.</p>
+    </div>
+
+    <div class="servicios-grid">
+        <div class="servicio-card active" data-servicio="administracion">
+            <div class="servicio-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Administración</h3>
+            <p>Transforma tu productividad con herramientas de gestión integral</p>
+        </div>
+
+        <div class="servicio-card" data-servicio="almacenes">
+            <div class="servicio-icon">
+                <i class="fas fa-warehouse"></i>
+            </div>
+            <h3>Almacenes</h3>
+            <p>Control total de tu inventario en tiempo real</p>
+        </div>
+
+        <div class="servicio-card" data-servicio="facturacion">
+            <div class="servicio-icon">
+                <i class="fas fa-file-invoice-dollar"></i>
+            </div>
+            <h3>Facturación</h3>
+            <p>Procesos rápidos y sin errores con normativas locales</p>
+        </div>
+
+        <div class="servicio-card" data-servicio="logistica">
+            <div class="servicio-icon">
+                <i class="fas fa-shipping-fast"></i>
+            </div>
+            <h3>Logística</h3>
+            <p>Optimiza tiempos y costos de distribución</p>
+        </div>
+
+        <div class="servicio-card" data-servicio="produccion">
+            <div class="servicio-icon">
+                <i class="fas fa-industry"></i>
+            </div>
+            <h3>Producción</h3>
+            <p>Mayor eficiencia en procesos de manufactura</p>
+        </div>
+
+        <div class="servicio-card" data-servicio="ventas">
+            <div class="servicio-icon">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <h3>Ventas</h3>
+            <p>Impulsa ingresos con análisis y seguimiento avanzado</p>
+        </div>
+    </div>
+</section>
+
+<!-- Paneles de descripción detallada -->
+<div class="descripcion-container">
+    <!-- Elementos decorativos flotantes -->
+    <div class="glow-effect glow-1"></div>
+    <div class="glow-effect glow-2"></div>
+
+    <div class="descripcion-panel active" id="descripcion-administracion">
+        <div class="descripcion-header">
+            <div class="descripcion-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h2>Servicio de Administración</h2>
+        </div>
+
+        <div class="descripcion-content">
+            <div class="beneficios">
+                <h3>Beneficios Principales</h3>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-check-circle"></i> Centralización de datos y procesos en una sola plataforma</li>
+                    <li><i class="fas fa-check-circle"></i> Mejora significativa en la toma de decisiones estratégicas</li>
+                    <li><i class="fas fa-check-circle"></i> Automatización de tareas clave repetitivas</li>
+                    <li><i class="fas fa-check-circle"></i> Reportes en tiempo real con dashboards interactivos</li>
+                    <li><i class="fas fa-check-circle"></i> Integración con otros sistemas empresariales</li>
+                </ul>
+            </div>
+
+            <div class="detalles">
+                <h3>Características Técnicas</h3>
+                <p>Nuestro sistema de administración ofrece herramientas completas para la gestión empresarial, incluyendo:</p>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-cog"></i> Control de usuarios y permisos personalizados</li>
+                    <li><i class="fas fa-cog"></i> Gestión documental automatizada</li>
+                    <li><i class="fas fa-cog"></i> Análisis predictivo con IA</li>
+                    <li><i class="fas fa-cog"></i> Integración con APIs externas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="descripcion-panel" id="descripcion-almacenes">
+        <div class="descripcion-header">
+            <div class="descripcion-icon">
+                <i class="fas fa-warehouse"></i>
+            </div>
+            <h2>Servicio de Almacenes</h2>
+        </div>
+
+        <div class="descripcion-content">
+            <div class="beneficios">
+                <h3>Beneficios Principales</h3>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-check-circle"></i> Reducción de pérdidas y robos hasta en un 40%</li>
+                    <li><i class="fas fa-check-circle"></i> Optimización de entradas y salidas de mercancía</li>
+                    <li><i class="fas fa-check-circle"></i> Gestión en tiempo real del inventario</li>
+                    <li><i class="fas fa-check-circle"></i> Control de caducidad y lotes automatizado</li>
+                </ul>
+            </div>
+
+            <div class="detalles">
+                <h3>Características Técnicas</h3>
+                <p>Sistema completo de gestión de almacenes con:</p>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-cog"></i> Códigos de barras y RFID</li>
+                    <li><i class="fas fa-cog"></i> Ubicación inteligente de productos</li>
+                    <li><i class="fas fa-cog"></i> Alertas de stock mínimo/máximo</li>
+                    <li><i class="fas fa-cog"></i> Integración con picking y packing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="descripcion-panel" id="descripcion-facturacion">
+        <div class="descripcion-header">
+            <div class="descripcion-icon">
+                <i class="fas fa-file-invoice-dollar"></i>
+            </div>
+            <h2>Servicio de Facturación</h2>
+        </div>
+
+        <div class="descripcion-content">
+            <div class="beneficios">
+                <h3>Beneficios Principales</h3>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-check-circle"></i> Generación de facturas en segundos</li>
+                    <li><i class="fas fa-check-circle"></i> Cumplimiento total de normativas locales</li>
+                    <li><i class="fas fa-check-circle"></i> Eliminación de errores manuales</li>
+                    <li><i class="fas fa-check-circle"></i> Integración con sistemas contables</li>
+                </ul>
+            </div>
+
+            <div class="detalles">
+                <h3>Características Técnicas</h3>
+                <p>Sistema de facturación electrónica con:</p>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-cog"></i> CFDI 4.0 y complementos</li>
+                    <li><i class="fas fa-cog"></i> Timbrado en tiempo real</li>
+                    <li><i class="fas fa-cog"></i> Cancelación automática</li>
+                    <li><i class="fas fa-cog"></i> Reportes SAT integrados</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="descripcion-panel" id="descripcion-logistica">
+        <div class="descripcion-header">
+            <div class="descripcion-icon">
+                <i class="fas fa-shipping-fast"></i>
+            </div>
+            <h2>Servicio de Logística</h2>
+        </div>
+
+        <div class="descripcion-content">
+            <div class="beneficios">
+                <h3>Beneficios Principales</h3>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-check-circle"></i> Optimización de rutas de entrega</li>
+                    <li><i class="fas fa-check-circle"></i> Reducción de costos operativos hasta 30%</li>
+                    <li><i class="fas fa-check-circle"></i> Seguimiento en tiempo real de envíos</li>
+                    <li><i class="fas fa-check-circle"></i> Planificación eficiente de flota vehicular</li>
+                </ul>
+            </div>
+
+            <div class="detalles">
+                <h3>Características Técnicas</h3>
+                <p>Sistema logístico integral con:</p>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-cog"></i> GPS y geolocalización</li>
+                    <li><i class="fas fa-cog"></i> Optimizador de rutas inteligente</li>
+                    <li><i class="fas fa-cog"></i> Gestión de transportistas</li>
+                    <li><i class="fas fa-cog"></i> Alertas de incidencias</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="descripcion-panel" id="descripcion-produccion">
+        <div class="descripcion-header">
+            <div class="descripcion-icon">
+                <i class="fas fa-industry"></i>
+            </div>
+            <h2>Servicio de Producción</h2>
+        </div>
+
+        <div class="descripcion-content">
+            <div class="beneficios">
+                <h3>Beneficios Principales</h3>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-check-circle"></i> Control preciso de insumos y tiempos</li>
+                    <li><i class="fas fa-check-circle"></i> Automatización de procesos productivos</li>
+                    <li><i class="fas fa-check-circle"></i> Mejora de calidad del producto final</li>
+                    <li><i class="fas fa-check-circle"></i> Reducción de mermas y desperdicios</li>
+                </ul>
+            </div>
+
+            <div class="detalles">
+                <h3>Características Técnicas</h3>
+                <p>Sistema de control de producción con:</p>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-cog"></i> Planificación de recursos (MRP)</li>
+                    <li><i class="fas fa-cog"></i> Control de calidad automatizado</li>
+                    <li><i class="fas fa-cog"></i> Mantenimiento predictivo</li>
+                    <li><i class="fas fa-cog"></i> Análisis OEE (Overall Equipment Effectiveness)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="descripcion-panel" id="descripcion-ventas">
+        <div class="descripcion-header">
+            <div class="descripcion-icon">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <h2>Servicio de Ventas</h2>
+        </div>
+
+        <div class="descripcion-content">
+            <div class="beneficios">
+                <h3>Beneficios Principales</h3>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-check-circle"></i> Seguimiento integral de clientes y pedidos</li>
+                    <li><i class="fas fa-check-circle"></i> Reportes en tiempo real de ventas</li>
+                    <li><i class="fas fa-check-circle"></i> Integración multicanal (online/offline)</li>
+                    <li><i class="fas fa-check-circle"></i> Aumento de ingresos con análisis predictivo</li>
+                </ul>
+            </div>
+
+            <div class="detalles">
+                <h3>Características Técnicas</h3>
+                <p>Sistema de gestión de ventas con:</p>
+                <ul class="beneficios-list">
+                    <li><i class="fas fa-cog"></i> CRM integrado</li>
+                    <li><i class="fas fa-cog"></i> Análisis de comportamiento de clientes</li>
+                    <li><i class="fas fa-cog"></i> Gestión de leads y oportunidades</li>
+                    <li><i class="fas fa-cog"></i> Integración con e-commerce</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <script>
+        // Tu código original del carrusel COMPLETO
         const nextDom = document.getElementById('next');
         const prevDom = document.getElementById('prev');
         const listitemDom = document.querySelector('.carousel .list');
@@ -114,6 +382,7 @@
           navbar?.classList.toggle("scrolled", window.scrollY > 50);
         });
 
+        // ⚡ VELOCIDAD DEL CAMBIO AUTOMÁTICO (cada 10 segundos - AJUSTABLE)
         let autoSlideInterval = setInterval(() => showSlider('next'), 10000);
 
         nextDom?.addEventListener('click', () => { showSlider('next'); resetAutoSlide(); });
@@ -124,20 +393,87 @@
           const itemThumb  = document.querySelectorAll('.carousel .thumbnail .item');
           listitemDom.classList.add('transitioning');
           thumbnailDom.classList.add('transitioning');
+
+          // ⚡ VELOCIDAD DE LA ANIMACIÓN (0.5 segundos - AJUSTABLE)
           setTimeout(() => {
-            if (type === 'next') { listitemDom.appendChild(itemSlider[0]); thumbnailDom.appendChild(itemThumb[0]); }
-            else { listitemDom.insertBefore(itemSlider[itemSlider.length - 1], itemSlider[0]);
-                   thumbnailDom.insertBefore(itemThumb[itemThumb.length - 1], itemThumb[0]); }
+            if (type === 'next') {
+                listitemDom.appendChild(itemSlider[0]);
+                thumbnailDom.appendChild(itemThumb[0]);
+            }
+            else {
+                listitemDom.insertBefore(itemSlider[itemSlider.length - 1], itemSlider[0]);
+                thumbnailDom.insertBefore(itemThumb[itemThumb.length - 1], itemThumb[0]);
+            }
             listitemDom.classList.remove('transitioning');
             thumbnailDom.classList.remove('transitioning');
-          }, 500);
+          }, 500); // 🔧 Cambia este número para ajustar velocidad de animación
         }
 
         function resetAutoSlide(isPrev) {
           clearInterval(autoSlideInterval);
           setTimeout(() => {
-            autoSlideInterval = setInterval(() => showSlider('next'), 10000);
+            autoSlideInterval = setInterval(() => showSlider('next'), 10000); // 🔧 Cambia este número para ajustar intervalo
           }, isPrev ? 10000 : 0);
         }
+
+        // NUEVO CÓDIGO AGREGADO: Para la selección de servicios
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleccionar elementos
+            const serviceCards = document.querySelectorAll('.servicio-card');
+            const descriptionPanels = document.querySelectorAll('.descripcion-panel');
+            const verMasButtons = document.querySelectorAll('.ver-mas-btn');
+
+            // Función para mostrar un servicio específico
+            function mostrarServicio(servicioId) {
+                // Remover active de todas las tarjetas
+                serviceCards.forEach(card => {
+                    card.classList.remove('active');
+                });
+
+                // Ocultar todos los paneles
+                descriptionPanels.forEach(panel => {
+                    panel.classList.remove('active');
+                });
+
+                // Activar tarjeta seleccionada
+                const tarjetaSeleccionada = document.querySelector(`[data-servicio="${servicioId}"]`);
+                if (tarjetaSeleccionada) {
+                    tarjetaSeleccionada.classList.add('active');
+                }
+
+                // Mostrar panel correspondiente
+                const panelSeleccionado = document.getElementById(`descripcion-${servicioId}`);
+                if (panelSeleccionado) {
+                    panelSeleccionado.classList.add('active');
+
+                    // Scroll suave al panel
+                    setTimeout(() => {
+                        panelSeleccionado.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 300);
+                }
+            }
+
+            // Event listeners para tarjetas
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const servicioId = this.getAttribute('data-servicio');
+                    mostrarServicio(servicioId);
+                });
+            });
+
+            // Event listeners para botones "Ver más" del carrusel
+            verMasButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const servicioId = this.getAttribute('data-servicio');
+                    mostrarServicio(servicioId);
+                });
+            });
+
+            // Inicializar con Administración activa
+            mostrarServicio('administracion');
+        });
     </script>
 }

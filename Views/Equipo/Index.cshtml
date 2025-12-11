@@ -3,6 +3,22 @@
 }
 
 @section Styles {
+    <!-- ESTILO DE EMERGENCIA - FONDO FORZADO -->
+    <style>
+        /* FONDO AZUL NEON CON NEGRO - FORZADO */
+        body {
+            background: #000000 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .team {
+            background: linear-gradient(135deg, #000000 0%, #001122 25%, #003366 50%, #005588 75%, #001122 100%) !important;
+            min-height: 100vh !important;
+            width: 100% !important;
+        }
+    </style>
+
     <!-- Estilos globales y específicos -->
     <link rel="stylesheet" href="~/Portada/Css/Gstyle.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Portada/Css/Equipo.css" asp-append-version="true" />
@@ -13,6 +29,342 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Estilos adicionales para las tarjetas de presentación -->
+    <style>
+        /* Estilos para los botones y tarjetas de presentación */
+        .show-more-btn {
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: #00AEEF;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+            position: relative;
+        }
+
+            .show-more-btn:hover {
+                background: #0088cc;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 174, 239, 0.4);
+            }
+
+        /* Tarjeta de presentación (inicialmente oculta) */
+        .presentation-card {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90vw;
+            max-width: 500px;
+            max-height: 85vh;
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #00AEEF;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: #00AEEF #1a1a1a;
+        }
+
+            .presentation-card::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .presentation-card::-webkit-scrollbar-track {
+                background: #1a1a1a;
+                border-radius: 10px;
+            }
+
+            .presentation-card::-webkit-scrollbar-thumb {
+                background: #00AEEF;
+                border-radius: 10px;
+            }
+
+            .presentation-card.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+        /* Fondo oscuro cuando se muestra la tarjeta */
+        .card-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(3px);
+        }
+
+            .card-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+        /* Contenido de la tarjeta de presentación */
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: nowrap;
+        }
+
+        .card-avatar {
+            width: 80px;
+            height: 80px;
+            min-width: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #00AEEF;
+            box-shadow: 0 5px 15px rgba(0, 174, 239, 0.3);
+        }
+
+        .card-title {
+            flex: 1;
+        }
+
+            .card-title h3 {
+                color: white;
+                font-size: 1.4rem;
+                margin-bottom: 5px;
+                line-height: 1.2;
+                font-weight: 700;
+            }
+
+            .card-title p {
+                color: #00AEEF;
+                font-size: 0.95rem;
+                font-weight: 600;
+                margin: 0;
+            }
+
+        .card-content {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+            .card-content p {
+                margin-bottom: 15px;
+            }
+
+                .card-content p:last-child {
+                    margin-bottom: 0;
+                }
+
+        .card-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .skill-tag {
+            background: rgba(0, 174, 239, 0.15);
+            color: #00AEEF;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 174, 239, 0.3);
+            transition: all 0.3s ease;
+        }
+
+            .skill-tag:hover {
+                background: rgba(0, 174, 239, 0.25);
+                transform: translateY(-2px);
+            }
+
+        .card-contact {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-link {
+            color: #b8b8b8;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+            .contact-link:hover {
+                color: #00AEEF;
+                background: rgba(0, 174, 239, 0.1);
+                transform: translateY(-3px);
+            }
+
+        .close-card {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #b8b8b8;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            z-index: 1002;
+            line-height: 1;
+        }
+
+            .close-card:hover {
+                color: #00AEEF;
+                background: rgba(255, 255, 255, 0.15);
+                transform: rotate(90deg);
+            }
+
+        /* @@media EN LUGAR DE - CORREGIDO PARA RAZOR */
+        @@media screen and (max-width: 768px) {
+            .presentation-card {
+                width: 95vw;
+                padding: 20px;
+                max-height: 90vh;
+                border-radius: 12px;
+            }
+
+            .card-header {
+                gap: 15px;
+            }
+
+            .card-avatar {
+                width: 70px;
+                height: 70px;
+                min-width: 70px;
+            }
+
+            .card-title h3 {
+                font-size: 1.3rem;
+            }
+
+            .card-title p {
+                font-size: 0.9rem;
+            }
+
+            .card-content {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .card-skills {
+                gap: 8px;
+            }
+
+            .skill-tag {
+                font-size: 0.8rem;
+                padding: 5px 12px;
+            }
+
+            .contact-link {
+                font-size: 1.2rem;
+                width: 35px;
+                height: 35px;
+            }
+
+            .close-card {
+                top: 10px;
+                right: 10px;
+                width: 35px;
+                height: 35px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @@media screen and (max-width: 480px) {
+            .presentation-card {
+                width: 98vw;
+                padding: 18px 15px;
+                border-radius: 10px;
+            }
+
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+
+            .card-avatar {
+                width: 90px;
+                height: 90px;
+                min-width: 90px;
+            }
+
+            .card-title h3 {
+                font-size: 1.2rem;
+            }
+
+            .card-content p {
+                margin-bottom: 12px;
+            }
+
+            .card-skills {
+                justify-content: center;
+            }
+
+            .skill-tag {
+                font-size: 0.75rem;
+                padding: 4px 10px;
+            }
+
+            .card-contact {
+                gap: 15px;
+            }
+
+            .contact-link {
+                font-size: 1.1rem;
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        @@media screen and (max-height: 600px) {
+            .presentation-card {
+                max-height: 95vh;
+                top: 50%;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+
+                .presentation-card.active {
+                    transform: translate(-50%, -50%) scale(1);
+                }
+        }
+    </style>
 }
 
 <nav class="navbar" role="navigation" aria-label="Principal">
@@ -47,50 +399,152 @@
 
 <!-- Contenido -->
 <div class="team">
-    <!-- PERSONA 1 -->
-    <div class="person">
+    <!-- PERSONA 1: GABRIELA -->
+    <div class="person" data-member="gabriela">
         <div class="container">
             <div class="container-inner">
-                <!-- Pega tu data URI base64 en estos src -->
                 <img class="circle"
-                     src="data:image/jpeg;base64,PEGAR_AQUI_TU_BASE64_FOTO_1" alt="Foto persona 1" />
-                <img class="img img1"
-                     src="data:image/png;base64,PEGAR_AQUI_TU_BASE64_BG_1" alt="" />
+                     src="~/Portada/images/Equipo/gaby.jpg"
+                     alt="Gabriela Rodríguez - CEO & Fundadora"
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400/00AEEF/FFFFFF?text=G'">
+                <div class="img img1" style="display: none;"></div>
             </div>
-            <div class="divider"></div>
-            <div class="name">Gabriela</div>
-            <div class="title">CEO</div>
         </div>
+        <div class="divider"></div>
+        <div class="name">Gabriela Rodríguez</div>
+        <div class="title">CEO & Fundadora</div>
+        <!-- BOTÓN PARA VER MÁS -->
+        <button class="show-more-btn" data-target="gabriela">
+            <i class="fas fa-id-card"></i> Ver Presentación
+        </button>
     </div>
 
-    <!-- PERSONA 2 -->
-    <div class="person">
+    <!-- PERSONA 2: ISRAEL -->
+    <div class="person" data-member="israel">
         <div class="container">
             <div class="container-inner">
                 <img class="circle"
-                     src="data:image/jpeg;base64,PEGAR_AQUI_TU_BASE64_FOTO_2" alt="Foto persona 2" />
-                <img class="img img2"
-                     src="data:image/png;base64,PEGAR_AQUI_TU_BASE64_BG_2" alt="" />
+                     src="~/Portada/images/Equipo/israel.jpg"
+                     alt="Israel Martínez - Director de Tecnología"
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400/00AEEF/FFFFFF?text=I'">
+                <div class="img img2" style="display: none;"></div>
             </div>
-            <div class="divider"></div>
-            <div class="name">Israel</div>
-            <div class="title">Director de Tecnología</div>
         </div>
+        <div class="divider"></div>
+        <div class="name">Israel Martínez</div>
+        <div class="title">Director de Tecnología</div>
+        <!-- BOTÓN PARA VER MÁS -->
+        <button class="show-more-btn" data-target="israel">
+            <i class="fas fa-id-card"></i> Ver Presentación
+        </button>
     </div>
 
-    <!-- PERSONA 3 -->
-    <div class="person">
+    <!-- PERSONA 3: ARECI -->
+    <div class="person" data-member="areci">
         <div class="container">
             <div class="container-inner">
                 <img class="circle"
-                     src="data:image/jpeg;base64,PEGAR_AQUI_TU_BASE64_FOTO_3" alt="Foto persona 3" />
-                <img class="img img3"
-                     src="data:image/png;base64,PEGAR_AQUI_TU_BASE64_BG_3" alt="" />
+                     src="~/Portada/images/Equipo/aceci.jpg"
+                     alt="Arceci López - Ingeniera en Sistemas"
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400/00AEEF/FFFFFF?text=A'">
+                <div class="img img3" style="display: none;"></div>
             </div>
-            <div class="divider"></div>
-            <div class="name">Areici</div>
-            <div class="title">Ingeniera en sistemas</div>
         </div>
+        <div class="divider"></div>
+        <div class="name">Arceci López</div>
+        <div class="title">Ingeniera en Sistemas</div>
+        <!-- BOTÓN PARA VER MÁS -->
+        <button class="show-more-btn" data-target="areci">
+            <i class="fas fa-id-card"></i> Ver Presentación
+        </button>
+    </div>
+</div>
+
+<!-- TARJETAS DE PRESENTACIÓN (OCULTAS INICIALMENTE) -->
+<!-- Overlay de fondo -->
+<div class="card-overlay" id="overlay"></div>
+
+<!-- Tarjeta de Gabriela -->
+<div class="presentation-card" id="card-gabriela">
+    <button class="close-card" aria-label="Cerrar presentación">&times;</button>
+    <div class="card-header">
+        <img class="card-avatar" src="~/Portada/images/Equipo/gaby.jpg" alt="Gabriela Rodríguez">
+        <div class="card-title">
+            <h3>Gabriela Rodríguez</h3>
+            <p>CEO & Fundadora</p>
+        </div>
+    </div>
+    <div class="card-content">
+        <p>Con más de 10 años de experiencia en el sector tecnológico, Gabriela fundó ABAK con la visión de revolucionar la industria mediante soluciones innovadoras. Su liderazgo estratégico ha guiado a la empresa desde sus inicios hasta convertirse en un referente del sector.</p>
+        <p>Especializada en gestión empresarial y desarrollo de negocios, Gabriela combina su expertise técnica con una profunda comprensión del mercado para dirigir la compañía hacia el éxito sostenible.</p>
+    </div>
+    <div class="card-skills">
+        <span class="skill-tag">Liderazgo</span>
+        <span class="skill-tag">Estrategia</span>
+        <span class="skill-tag">Innovación</span>
+        <span class="skill-tag">Gestión</span>
+        <span class="skill-tag">Negocios</span>
+    </div>
+    <div class="card-contact">
+        <a href="#" class="contact-link" aria-label="LinkedIn de Gabriela"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="contact-link" aria-label="Email de Gabriela"><i class="fas fa-envelope"></i></a>
+        <a href="#" class="contact-link" aria-label="Twitter de Gabriela"><i class="fab fa-twitter"></i></a>
+    </div>
+</div>
+
+<!-- Tarjeta de Israel -->
+<div class="presentation-card" id="card-israel">
+    <button class="close-card" aria-label="Cerrar presentación">&times;</button>
+    <div class="card-header">
+        <img class="card-avatar" src="~/Portada/images/Equipo/israel.jpg" alt="Israel Martínez">
+        <div class="card-title">
+            <h3>Israel Martínez</h3>
+            <p>Director de Tecnología</p>
+        </div>
+    </div>
+    <div class="card-content">
+        <p>Israel lidera el departamento tecnológico de ABAK con más de 8 años de experiencia en arquitectura de software y desarrollo de soluciones escalables. Su expertise abarca desde sistemas de backend complejos hasta interfaces de usuario intuitivas.</p>
+        <p>Es apasionado por las tecnologías emergentes y mantiene a ABAK a la vanguardia implementando las mejores prácticas y frameworks modernos. Bajo su dirección, el equipo técnico ha desarrollado soluciones que han optimizado procesos para más de 50 clientes.</p>
+    </div>
+    <div class="card-skills">
+        <span class="skill-tag">Arquitectura</span>
+        <span class="skill-tag">Backend</span>
+        <span class="skill-tag">Frontend</span>
+        <span class="skill-tag">DevOps</span>
+        <span class="skill-tag">Cloud</span>
+    </div>
+    <div class="card-contact">
+        <a href="#" class="contact-link" aria-label="LinkedIn de Israel"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="contact-link" aria-label="GitHub de Israel"><i class="fab fa-github"></i></a>
+        <a href="#" class="contact-link" aria-label="Sitio web de Israel"><i class="fas fa-globe"></i></a>
+    </div>
+</div>
+
+<!-- Tarjeta de Arcei -->
+<div class="presentation-card" id="card-areci">
+    <button class="close-card" aria-label="Cerrar presentación">&times;</button>
+    <div class="card-header">
+        <img class="card-avatar" src="~/Portada/images/Equipo/aceci.jpg" alt="Arcei López">
+        <div class="card-title">
+            <h3>Arcei López</h3>
+            <p>Ingeniera en Sistemas</p>
+        </div>
+    </div>
+    <div class="card-content">
+        <p>Arceci es una desarrolladora full-stack con especial enfoque en experiencia de usuario y diseño centrado en el usuario. Con 5 años de experiencia en desarrollo web, ha trabajado en más de 30 proyectos exitosos para diversos sectores.</p>
+        <p>Su habilidad para transformar requisitos complejos en interfaces intuitivas y funcionales ha sido clave para el éxito de múltiples soluciones de ABAK. Siempre busca el equilibrio perfecto entre estética y funcionalidad.</p>
+    </div>
+    <div class="card-skills">
+        <span class="skill-tag">Full-Stack</span>
+        <span class="skill-tag">UX/UI</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">Diseño</span>
+    </div>
+    <div class="card-contact">
+        <a href="#" class="contact-link" aria-label="LinkedIn de Arcei"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="contact-link" aria-label="GitHub de Arcei"><i class="fab fa-github"></i></a>
+        <a href="#" class="contact-link" aria-label="Behance de Arcei"><i class="fab fa-behance"></i></a>
     </div>
 </div>
 
@@ -98,9 +552,106 @@
     <script>
         // Efecto de navbar al hacer scroll
         window.addEventListener("scroll", function () {
-          const navbar = document.querySelector(".navbar");
-          if (!navbar) return;
-          navbar.classList.toggle("scrolled", window.scrollY > 50);
+            const navbar = document.querySelector(".navbar");
+            if (!navbar) return;
+            navbar.classList.toggle("scrolled", window.scrollY > 50);
         });
+
+        // FUNCIONALIDAD PARA LAS TARJETAS DE PRESENTACIÓN
+        document.addEventListener('DOMContentLoaded', function() {
+            const showMoreBtns = document.querySelectorAll('.show-more-btn');
+            const closeBtns = document.querySelectorAll('.close-card');
+            const overlay = document.getElementById('overlay');
+            let activeCard = null;
+
+            // Mostrar tarjeta cuando se hace clic en "Ver Presentación"
+            showMoreBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const targetId = this.getAttribute('data-target');
+                    const card = document.getElementById(`card-${targetId}`);
+
+                    // Si ya hay una tarjeta activa, cerrarla primero
+                    if (activeCard) {
+                        activeCard.classList.remove('active');
+                    }
+
+                    // Mostrar nueva tarjeta
+                    card.classList.add('active');
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    activeCard = card;
+
+                    // Enfocar el botón de cerrar para accesibilidad
+                    setTimeout(() => {
+                        const closeBtn = card.querySelector('.close-card');
+                        if (closeBtn) closeBtn.focus();
+                    }, 100);
+                });
+            });
+
+            // Cerrar tarjeta cuando se hace clic en la X
+            closeBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const card = this.closest('.presentation-card');
+                    card.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    activeCard = null;
+                });
+            });
+
+            // Cerrar tarjeta cuando se hace clic en el overlay
+            overlay.addEventListener('click', function() {
+                document.querySelectorAll('.presentation-card').forEach(card => {
+                    card.classList.remove('active');
+                });
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+                activeCard = null;
+            });
+
+            // Cerrar con tecla ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    document.querySelectorAll('.presentation-card').forEach(card => {
+                        card.classList.remove('active');
+                    });
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    activeCard = null;
+                }
+            });
+
+            // Prevenir que el clic en la tarjeta cierre el modal
+            document.querySelectorAll('.presentation-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        });
+
+        // ===== CÓDIGO DE EMERGENCIA PARA FONDO =====
+        // ESTO GARANTIZA QUE EL FONDO SE CAMBIE
+        window.onload = function() {
+            // Forzar cambio de fondo con JavaScript
+            var teamDiv = document.querySelector('.team');
+            if (teamDiv) {
+                // Método 1: Cambiar estilo directamente
+                teamDiv.style.background = 'linear-gradient(135deg, #000000 0%, #003366 50%, #000000 100%)';
+                teamDiv.style.backgroundColor = '#001133';
+
+                // Método 2: Agregar !important via CSS Text
+                teamDiv.style.cssText += 'background: linear-gradient(135deg, #000000, #003366) !important;';
+
+                // Método 3: Inyectar nuevo estilo
+                var forceStyle = document.createElement('style');
+                forceStyle.innerHTML = '.team { background: linear-gradient(135deg, #000000, #003366) !important; }';
+                document.head.appendChild(forceStyle);
+
+                console.log('✅ Fondo cambiado a AZUL NEON CON NEGRO');
+            }
+        };
     </script>
 }

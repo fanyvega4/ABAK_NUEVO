@@ -1,0 +1,568 @@
+﻿@using System.Linq
+@model IEnumerable<ABAK_NUEVO.Models.ManualAyuda.ArticuloAyuda>
+
+@{
+    ViewData["Title"] = "Manual de ayuda";
+}
+
+<style>
+    :root {
+        --abak-bg: #020817;
+        --abak-panel: #041829;
+        --abak-panel-soft: #031321;
+        --abak-accent: #00f6ff;
+        --abak-accent-soft: rgba(0, 246, 255, 0.2);
+        --abak-accent-strong: #00ffa8;
+        --abak-text: #e5f3ff;
+        --abak-text-soft: #9fb3d9;
+        --abak-outline: rgba(0, 255, 200, 0.35);
+        --abak-card-border: rgba(0, 255, 255, 0.18);
+        --abak-danger: #ff5277;
+    }
+
+    body {
+        background: radial-gradient(circle at top, #1c89ff 0, #020817 42%, #000000 100%);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--abak-text);
+    }
+
+    .abak-page {
+        max-width: 1180px;
+        margin: 0 auto 40px;
+        padding: 32px 16px 40px;
+    }
+
+    .abak-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 18px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(0, 255, 180, 0.14), rgba(0, 255, 255, 0.08));
+        color: var(--abak-text-soft);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border: 1px solid rgba(0, 255, 210, 0.35);
+        margin-bottom: 18px;
+    }
+
+    .abak-badge-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: radial-gradient(circle, #00ffc3 0, #00bcd4 60%, #005a96 100%);
+        box-shadow: 0 0 10px rgba(0, 255, 210, 0.9);
+    }
+
+    .abak-nav-row {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+
+    .abak-nav-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 255, 255, 0.28);
+        background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.22), #03101d);
+        color: var(--abak-text);
+        text-decoration: none;
+        font-size: 0.9rem;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.65);
+        transition: all 0.18s ease-out;
+    }
+
+        .abak-nav-pill span.icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.55);
+            font-size: 0.9rem;
+        }
+
+        .abak-nav-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+            border-color: var(--abak-accent-strong);
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+    .abak-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+        gap: 24px;
+        margin-bottom: 28px;
+    }
+
+    .abak-panel {
+        border-radius: 26px;
+        padding: 26px 26px 26px;
+        background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.16), rgba(1, 10, 20, 0.95));
+        border: 1px solid rgba(0, 255, 255, 0.18);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 40px rgba(0, 200, 255, 0.16);
+    }
+
+    .abak-panel-main {
+        background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.22), #020b17);
+    }
+
+    .abak-panel h1 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        margin-bottom: 18px;
+    }
+
+    .abak-user-tag {
+        margin: 6px 0 18px;
+        padding: 12px 20px;
+        border-radius: 999px;
+        background: radial-gradient(circle at left, rgba(0, 255, 210, 0.4), rgba(0, 18, 32, 0.96));
+        border: 1px solid rgba(0, 255, 210, 0.55);
+        color: var(--abak-text);
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .abak-user-label {
+        font-weight: 500;
+        color: var(--abak-text-soft);
+    }
+
+    .abak-body-text {
+        color: var(--abak-text-soft);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 18px;
+    }
+
+    .abak-section-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--abak-accent-strong);
+        margin-bottom: 10px;
+    }
+
+    .abak-bullet-title {
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .abak-columns {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 18px;
+        margin-top: 10px;
+    }
+
+        .abak-columns ul {
+            padding-left: 18px;
+            margin: 0;
+            color: var(--abak-text-soft);
+            font-size: 0.94rem;
+        }
+
+        .abak-columns li + li {
+            margin-top: 4px;
+        }
+
+    .abak-note {
+        margin-top: 14px;
+        font-size: 0.85rem;
+        color: var(--abak-text-soft);
+        font-style: italic;
+    }
+
+    .abak-panel-assistant {
+        background: radial-gradient(circle at top, rgba(0, 255, 255, 0.22), #020b18);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+        .abak-panel-assistant h2 {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+    .abak-label-pill {
+        display: inline-block;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--abak-text-soft);
+        margin-bottom: 8px;
+    }
+
+    .abak-assistant-feature {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 255, 255, 0.25);
+        background: radial-gradient(circle at left, rgba(0, 255, 255, 0.18), rgba(1, 15, 28, 0.96));
+        font-size: 0.9rem;
+        color: var(--abak-text-soft);
+    }
+
+        .abak-assistant-feature b {
+            color: #ffffff;
+        }
+
+    .sak-bot {
+        margin-top: 26px;
+        display: flex;
+        justify-content: center;
+    }
+
+        .sak-bot img {
+            max-width: 190px;
+            height: auto;
+            filter: drop-shadow(0 12px 30px rgba(0, 255, 255, 0.45));
+            animation: floatBot 6s ease-in-out infinite;
+        }
+
+    @@keyframes floatBot {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    /* Artículos */
+
+    .abak-articles-panel {
+        border-radius: 26px;
+        padding: 22px 26px 26px;
+        margin-bottom: 10px;
+        background: radial-gradient(circle at top, rgba(0, 122, 255, 0.22), #020b18);
+        border: 1px solid var(--abak-card-border);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 200, 255, 0.18);
+    }
+
+    .abak-articles-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+        .abak-articles-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .abak-articles-header span {
+            font-size: 0.85rem;
+            color: var(--abak-text-soft);
+        }
+
+    .abak-article-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 8px;
+    }
+
+    .abak-article-card {
+        border-radius: 18px;
+        padding: 14px 18px;
+        background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.14), #020916);
+        border: 1px solid var(--abak-card-border);
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .abak-article-meta {
+        font-size: 0.8rem;
+        color: var(--abak-text-soft);
+        margin-bottom: 2px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .abak-chip {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        background: rgba(0, 255, 160, 0.16);
+        color: var(--abak-accent-strong);
+        font-weight: 600;
+    }
+
+    .abak-article-card h4 {
+        margin: 0 0 4px;
+        font-size: 1rem;
+    }
+
+    .abak-article-description {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--abak-text-soft);
+    }
+
+    .abak-article-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 120px;
+        align-items: flex-end;
+    }
+
+    .btn-outline-pill,
+    .btn-link-pill {
+        font-size: 0.85rem;
+        border-radius: 999px;
+        padding: 6px 16px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: all 0.16s ease-out;
+    }
+
+    .btn-outline-pill {
+        border: 1px solid rgba(0, 255, 255, 0.4);
+        color: #ffffff;
+        background: transparent;
+    }
+
+        .btn-outline-pill:hover {
+            background: var(--abak-accent);
+            color: #000;
+            text-decoration: none;
+        }
+
+    .btn-link-pill {
+        padding-inline: 2px;
+        color: var(--abak-accent);
+    }
+
+        .btn-link-pill span.arrow {
+            font-size: 1rem;
+        }
+
+        .btn-link-pill:hover {
+            color: var(--abak-accent-strong);
+            text-decoration: underline;
+        }
+
+    @@media (max-width: 980px) {
+        .abak-grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .abak-nav-row {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .abak-panel {
+            padding: 22px 18px;
+        }
+
+        .abak-articles-panel {
+            padding-inline: 18px;
+        }
+
+        .abak-article-card {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .abak-article-actions {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    @@media (max-width: 640px) {
+        .abak-columns {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .sak-bot img {
+            max-width: 150px;
+        }
+    }
+</style>
+
+<section class="abak-page">
+    <div class="abak-nav-row">
+        <a asp-controller="Home" asp-action="Index" class="abak-nav-pill">
+            <span class="icon">🏠</span>
+            <span>Volver al inicio</span>
+        </a>
+        <a asp-controller="Capacitacion" asp-action="Index" class="abak-nav-pill">
+            <span class="icon">🎓</span>
+            <span>Ir a capacitación</span>
+        </a>
+        <a asp-controller="MaterialLibre" asp-action="Index" class="abak-nav-pill">
+            <span class="icon">📂</span>
+            <span>Ir a material libre</span>
+        </a>
+    </div>
+
+    <span class="abak-badge">
+        <span class="abak-badge-dot"></span>
+        Centro de soporte ABAK
+    </span>
+
+    <div class="abak-grid">
+        <!-- Panel principal -->
+        <article class="abak-panel abak-panel-main">
+            <h1>Manual de ayuda</h1>
+
+            @if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                <div class="abak-user-tag">
+                    <span class="abak-user-label">Estás autenticado como</span>
+                    <strong>@User.Identity!.Name</strong>
+                </div>
+            }
+
+            <p class="abak-body-text">
+                Bienvenido al módulo de <strong>manual de ayuda</strong>. Esta sección está disponible solo para usuarios
+                registrados y concentra la documentación esencial para utilizar el sistema ABAK.
+            </p>
+
+            <div class="abak-columns">
+                <div>
+                    <div class="abak-section-title">¿Qué podrás encontrar aquí?</div>
+                    <div class="abak-bullet-title">Contenido principal</div>
+                    <ul>
+                        <li>Guías paso a paso de cada módulo.</li>
+                        <li>Documentación de procesos clave del sistema.</li>
+                        <li>FAQs organizadas por tema y nivel de detalle.</li>
+                        <li>Archivos descargables (manuales, fichas técnicas, etc.).</li>
+                    </ul>
+                </div>
+
+             
+            </div>
+
+            <p class="abak-note">
+            </p>
+        </article>
+
+        <!-- Panel asistente -->
+        <aside class="abak-panel abak-panel-assistant">
+            <span class="abak-label-pill">Asistente ABAK</span>
+            <h2>SAK te acompaña en cada proceso</h2>
+            <p class="abak-body-text" style="margin-bottom:10px;">
+                Este módulo está listo para crecer a un centro de conocimiento completo: artículos, flujos guiados,
+               manuales y métricas de consulta por usuario.
+            </p>
+
+            <div class="abak-assistant-feature">
+                <b>Auditoría activa</b>
+                <span>cada acceso se registra en la BD.</span>
+            </div>
+            <div class="abak-assistant-feature">
+                <b>Contenido modular</b>
+                <span>artículos por categoría y por módulo del ERP.</span>
+            </div>
+            <div class="abak-assistant-feature">
+                <b>Escalable</b>
+                <span>listo para integrar estadísticas y rutas de aprendizaje.</span>
+            </div>
+
+            <div class="sak-bot">
+                <img src="~/Portada/images/Sak/complet emotion.png" alt="SAK asistente" />
+            </div>
+        </aside>
+    </div>
+
+    <!-- Listado de artículos -->
+    <section class="abak-articles-panel">
+        <div class="abak-articles-header">
+            <div>
+                <h3>Artículos disponibles</h3>
+                <p class="abak-body-text" style="margin:2px 0 0; font-size:.9rem;">
+                    Consulta las guías que ya están cargadas. Más contenido se integrará en las siguientes iteraciones del proyecto.
+                </p>
+            </div>
+            <span>
+                @if (Model != null)
+                {
+                    @($"Mostrando {Model.Count()} artículo{(Model.Count() == 1 ? "" : "s")}.")
+                }
+            </span>
+        </div>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="abak-article-list">
+                @foreach (var art in Model)
+                {
+                    <article class="abak-article-card">
+                        <div>
+                            <div class="abak-article-meta">
+                                @if (!string.IsNullOrWhiteSpace(art.Categoria))
+                                {
+                                    <span class="abak-chip">@art.Categoria</span>
+                                }
+
+                                @if (art.FechaPublicacion != default)
+                                {
+                                    <span>Publicado el @art.FechaPublicacion.ToLocalTime().ToString("dd/MM/yyyy")</span>
+                                }
+                            </div>
+
+                            <h4>@art.Titulo</h4>
+
+                            @if (!string.IsNullOrWhiteSpace(art.Resumen))
+                            {
+                                <p class="abak-article-description">@art.Resumen</p>
+                            }
+                        </div>
+
+                        <div class="abak-article-actions">
+                            <a asp-action="Detalle"
+                               asp-route-id="@art.Id"
+                               class="btn-outline-pill">
+                                Ver detalles
+                            </a>
+                            <a asp-action="Detalle"
+                               asp-route-id="@art.Id"
+                               class="btn-link-pill">
+                                Abrir guía <span class="arrow">→</span>
+                            </a>
+                        </div>
+                    </article>
+                }
+            </div>
+        }
+        else
+        {
+            <p class="abak-body-text" style="margin-top:8px;">
+                Aún no hay artículos registrados en el manual de ayuda. Esta sección queda preparada para que tus jefes
+                puedan cargar la documentación definitiva más adelante.
+            </p>
+        }
+    </section>
+</section>

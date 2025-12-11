@@ -1,4 +1,24 @@
-﻿@* Ruta: Views/Shared/_Layout.cshtml *@
+﻿@* Inyecciones para poder saber si el usuario está logueado y si es admin *@
+@using Microsoft.AspNetCore.Identity
+@using ABAK_NUEVO.Models.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    // Variable disponible para las vistas que usen este layout
+    var esAdmin = false;
+
+    if (SignInManager.IsSignedIn(User))
+    {
+        var email = User.Identity?.Name?.ToLower() ?? string.Empty;
+        esAdmin = User.IsInRole("Admin") || email == "admin@erp-abak.com";
+    }
+
+    // Determinar si estamos en la página de Demo para agregar la clase CSS correspondiente
+    var esPaginaDemo = ViewContext.RouteData.Values["controller"]?.ToString() == "Demo";
+}
+
+@* Ruta: Views/Shared/_Layout.cshtml *@
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,23 +26,36 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>@(string.IsNullOrWhiteSpace(ViewData["Title"] as string) ? "ABAK" : $"{ViewData["Title"]} - ABAK")</title>
+    <title>
+        @(string.IsNullOrWhiteSpace(ViewData["Title"] as string)
+                ? "ABAK"
+                : $"{ViewData["Title"]} - ABAK")
+    </title>
 
-    @* Favicon global (ajusta la ruta si tu .ico vive en otro subdirectorio) *@
+    @* Favicon global *@
     <link rel="icon" href="~/Portada/images/Abak.ico" type="image/x-icon" />
 
-    @* Estilos globales del sitio (opcional) *@
+    @* Estilos globales del sitio *@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
     @* Cada vista puede inyectar sus propios estilos aquí *@
     @RenderSection("Styles", required: false)
+
+    @* Script para manejar clases CSS específicas por página *@
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Agregar clase demo-page al body si estamos en la página de Demo
+            var controllerName = '@ViewContext.RouteData.Values["controller"]';
+            if (controllerName === 'Demo') {
+                document.body.classList.add('demo-page');
+            }
+        });
+    </script>
 </head>
-<body>
-    <header id="site-header">
-        @* Navbar/logo global si lo necesitas
-        <a asp-controller="Home" asp-action="Index" class="brand">ABAK</a>
-        *@
-    </header>
+<body class="@(esPaginaDemo ? "demo-page" : "")">
+    @* Ya no mostramos menú aquí.
+       El menú principal vive en Home/Index (tu navbar bonita),
+       y en otras vistas puedes dibujar lo que necesites. *@
 
     <main role="main">
         @RenderBody()
@@ -32,13 +65,35 @@
         @* Footer global opcional *@
     </footer>
 
-    @* Scripts globales (mantén esto liviano) *@
+    @* Scripts globales *@
     <script src="~/js/site.js" asp-append-version="true" defer></script>
 
-    @* Cada vista puede inyectar scripts propios aquí *@
+    @* Secciones opcionales *@
     @RenderSection("Scripts", required: false)
-
-    @* Si alguna vista quiere cargar scripts de validación (forms), puede definir esta sección *@
     @RenderSection("ValidationScripts", required: false)
+
+    @* Script adicional para asegurar la clase demo-page en todas las situaciones *@
+    <script>
+        // Verificación adicional para asegurar la clase demo-page
+        document.addEventListener('DOMContentLoaded', function() {
+            var currentPath = window.location.pathname.toLowerCase();
+            if (currentPath.includes('/demo') || currentPath.includes('demo/index')) {
+                if (!document.body.classList.contains('demo-page')) {
+                    document.body.classList.add('demo-page');
+                }
+            }
+
+            // Si estamos en Demo, asegurarnos que no haya estilos conflictivos
+            if (document.body.classList.contains('demo-page')) {
+                // Opcional: Remover cualquier estilo global que pueda interferir
+                var mainElement = document.querySelector('main');
+                if (mainElement) {
+                    mainElement.style.padding = '0';
+                    mainElement.style.margin = '0';
+                    mainElement.style.maxWidth = '100%';
+                }
+            }
+        });
+    </script>
 </body>
 </html>

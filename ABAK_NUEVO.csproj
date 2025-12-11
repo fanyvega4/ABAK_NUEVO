@@ -503,8 +503,4 @@
     <TypeScriptCompile Include="Portada\node_modules\tslib\tslib.d.ts" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Portada\images\Equipo\" />
-  </ItemGroup>
-
 </Project>

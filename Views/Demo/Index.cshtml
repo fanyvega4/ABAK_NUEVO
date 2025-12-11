@@ -1,136 +1,101 @@
 ﻿@{
     ViewData["Title"] = "Demo";
+    Layout = "_Layout";
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/Portada/Css/Gstyle.css" />
     <link rel="stylesheet" href="~/Portada/Css/Demo.css" />
     <link rel="stylesheet" href="~/Portada/Css/Buttons.css" />
-    <link rel="icon" href="~/Portada/images/Abak.ico" type="image/x-icon" />
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-          crossorigin="anonymous" referrerpolicy="no-referrer">
-}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<!-- Botón del chatbox en la parte izquierda -->
-<div class="chatbox-btn"><i class="fas fa-comments" aria-hidden="true"></i></div>
-
-<nav class="navbar">
-    <img src="~/Portada/images/Abak.png" alt="Logo" class="Logo-menu">
-    <ul>
-        <li class="home">
-            <a asp-controller="Home" asp-action="Index">
-                <i class="fas fa-home"></i><span class="nav-text">Inicio</span>
-            </a>
-        </li>
-        <li class="home">
-            <a asp-controller="Servicios" asp-action="Index">
-                <i class="fas fa-cogs"></i><span class="nav-text">Servicios</span>
-            </a>
-        </li>
-        <li class="home">
-            <a asp-controller="Equipo" asp-action="Index">
-                <i class="fas fa-users"></i><span class="nav-text">Equipo</span>
-            </a>
-        </li>
-        <li class="home">
-            <a asp-controller="Demo" asp-action="Index">
-                <i class="fas fa-desktop"></i><span class="nav-text">Demo</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-
-<section class="container" id="container">
-    <!-- Formulario Agendar Demo -->
-    <div class="form-container sign-up">
-        <form>
-            <h1>Agendar Demo</h1>
-            <p>Agenda una Demo ahora y descubre cómo SIAAPI puede mejorar la eficiencia de tu empresa.</p>
-            <input type="text" class="form__input" placeholder="Nombre" required>
-            <input type="email" class="form__input" placeholder="Ingresa tu correo" required>
-            <input type="tel" class="form__input" placeholder="Ingresa tu teléfono" pattern="[0-9]{10}" required>
-            <button class="btn btn__primary" id="Ncliente" type="button"><p>Agendar cita</p></button>
-            <div class="social-icons">
-                <a href="https://facebook.com" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-                <a href="https://wa.me/1234567890" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </form>
-    </div>
-
-    <!-- Formulario Ingresar a la Demo -->
-    <div class="form-container sign-in">
-        <form>
-            <h1>Bienvenido a la Demo</h1>
-            <p>Gracias por confiar en nosotros. <br> Ingresa ahora y mejora la eficiencia de tu empresa con un solo clic.</p>
-            <input type="text" class="form__input" placeholder="Usuario" required>
-            <input type="password" class="form__input" placeholder="Contraseña" required>
-            <button class="btn btn__primary" id="Inicio" type="button"><p>Ingresar</p></button>
-            <div class="social-icons">
-                <a href="https://facebook.com" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-                <a href="https://wa.me/1234567890" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </form>
-    </div>
-
-    <!-- Contenedor de alternancia -->
-    <div class="toggle-container">
-        <div class="toggle">
-            <div class="toggle-panel toggle-left">
-                <h1>Bienvenido</h1>
-                <p>
-                    Ingresa tu información para agendar una Demo y uno de nuestros especialistas te contactará por WhatsApp.
-                    <br><br>Si ya tienes acceso, haz clic aquí.
-                </p>
-                <button class="btn btn__secondary" id="Demo" type="button">Demo</button>
-            </div>
-            <div class="toggle-panel toggle-right">
-                <h1>Bienvenido</h1>
-                <p>
-                    Ingresa el usuario y la contraseña que recibiste para probar la Demo durante 15 días.
-                    <br><br>Si no has solicitado una Demo, haz clic en el botón a continuación.
-                </p>
-                <button class="btn btn__secondary" id="Register" type="button"><p>Agendar Demo</p></button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Botoncitos de prueba de toast -->
-<button onclick="showToast('success')" class="btn btn__secondary" type="button">Success</button>
-<button onclick="showToast('error')" class="btn btn__secondary" type="button">Error</button>
-<button onclick="showToast('invalid')" class="btn btn__secondary" type="button">Invalid</button>
-<div id="toastBox"></div>
-
-@section Scripts {
-    <script>
-        // Navbar sticky
-        window.addEventListener("scroll", function () {
-          const navbar = document.querySelector(".navbar");
-          navbar?.classList.toggle("scrolled", window.scrollY > 50);
-        });
-
-        // Toggle entre formularios
-        const container = document.getElementById('container');
-        document.getElementById('Register')?.addEventListener('click', () => container.classList.add("active"));
-        document.getElementById('Demo')?.addEventListener('click',     () => container.classList.remove("active"));
-
-        // Toasts
-        const toastBox = document.getElementById('toastBox');
-        function showToast(type) {
-          const config = {
-            success: { message: '¡Éxito! Operación completada.',    icon: '<i class="fas fa-check-circle"></i>' },
-            error:   { message: 'Usuario o contraseña inválidos.',  icon: '<i class="fas fa-times-circle"></i>' },
-            invalid: { message: 'Lo siento, tu periodo de Demo ha caducado.', icon: '<i class="fas fa-exclamation-triangle"></i>' }
-          };
-          const toast = document.createElement('div');
-          toast.className = `toast ${type}`;
-          toast.innerHTML = `${config[type].icon}<span>${config[type].message}</span>`;
-          toastBox.appendChild(toast);
-          setTimeout(() => toast.remove(), 4000);
+    <!-- ESTILOS DE EMERGENCIA PARA FORZAR LA VISTA -->
+    <style>
+        /* FORZAR body.demo-page */
+        body {
+            background: linear-gradient(135deg, #05162c 0%, #0a192f 50%, #05162c 100%) !important;
+            min-height: 100vh !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 20px !important;
+            margin: 0 !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
         }
-        window.showToast = showToast;
-    </script>
+
+        /* Asegurar que el contenido sea visible */
+        main {
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        /* Contenedor principal de Demo */
+        .demo-wrapper {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            min-height: 100vh !important;
+            padding-top: 80px !important;
+        }
+
+        /* Forzar visibilidad del formulario */
+        .container {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            width: 1000px !important;
+            height: 600px !important;
+            background: rgba(15, 35, 65, 0.85) !important;
+            border-radius: 30px !important;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4), 0 0 80px rgba(0, 180, 255, 0.2) !important;
+            border: 1px solid rgba(0, 180, 255, 0.2) !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        /* Navbar para Demo */
+        .navbar.demo-nav {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            background: rgba(10, 25, 47, 0.95) !important;
+            backdrop-filter: blur(10px) !important;
+            border-bottom: 1px solid rgba(0, 180, 255, 0.2) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+            z-index: 1000 !important;
+            padding: 0 20px !important;
+        }
+
+            .navbar.demo-nav ul {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                height: 80px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                list-style: none !important;
+            }
+
+            .navbar.demo-nav .home {
+                margin: 0 20px !important;
+            }
+
+                .navbar.demo-nav .home a {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    text-decoration: none !important;
+                    color: #a0d2ff !important;
+                    transition: all 0.3s ease !important;
+                    padding: 10px !important;
+                }
+
+                    .navbar.demo-nav .home a.active {
+                        color: #00b4ff !important;
+                    }
+    </style>
 }

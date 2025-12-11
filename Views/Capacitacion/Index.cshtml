@@ -1,0 +1,622 @@
+﻿@{
+    ViewData["Title"] = "Capacitación";
+}
+
+<style>
+    :root {
+        --abak-panel: #041829;
+        --abak-accent: #00f6ff;
+        --abak-accent-soft: rgba(0, 246, 255, 0.18);
+        --abak-accent-strong: #00ffa8;
+        --abak-text: #e5f3ff;
+        --abak-text-soft: #9fb3d9;
+    }
+
+    body {
+        background: radial-gradient(circle at top, #1c89ff 0, #020817 42%, #000000 100%);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--abak-text);
+    }
+
+    .abak-page {
+        max-width: 1180px;
+        margin: 0 auto 40px;
+        padding: 32px 16px 40px;
+    }
+
+    .abak-nav-row {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+
+    .abak-nav-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 255, 255, 0.28);
+        background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.22), #03101d);
+        color: var(--abak-text);
+        text-decoration: none;
+        font-size: 0.9rem;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.65);
+        transition: all 0.18s ease-out;
+    }
+
+        .abak-nav-pill span.icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.55);
+            font-size: 0.9rem;
+        }
+
+        .abak-nav-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+            border-color: var(--abak-accent-strong);
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+    .abak-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 18px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(0, 255, 180, 0.14), rgba(0, 255, 255, 0.08));
+        color: var(--abak-text-soft);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border: 1px solid rgba(0, 255, 210, 0.35);
+        margin-bottom: 18px;
+    }
+
+    .abak-badge-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: radial-gradient(circle, #00ffc3 0, #00bcd4 60%, #005a96 100%);
+        box-shadow: 0 0 10px rgba(0, 255, 210, 0.9);
+    }
+
+    .abak-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+        gap: 24px;
+        margin-bottom: 26px;
+    }
+
+    .abak-panel {
+        border-radius: 26px;
+        padding: 26px 26px 26px;
+        background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.18), rgba(2, 10, 25, 0.98));
+        border: 1px solid rgba(0, 255, 255, 0.18);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 40px rgba(0, 200, 255, 0.16);
+    }
+
+    .abak-panel-main {
+        background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.22), #020b17);
+    }
+
+    .abak-panel h1 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        margin-bottom: 14px;
+    }
+
+    .abak-user-tag {
+        margin: 6px 0 18px;
+        padding: 12px 20px;
+        border-radius: 999px;
+        background: radial-gradient(circle at left, rgba(0, 255, 210, 0.4), rgba(0, 18, 32, 0.96));
+        border: 1px solid rgba(0, 255, 210, 0.55);
+        color: var(--abak-text);
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .abak-user-label {
+        font-weight: 500;
+        color: var(--abak-text-soft);
+    }
+
+    .abak-body-text {
+        color: var(--abak-text-soft);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 16px;
+    }
+
+    .abak-section-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--abak-accent-strong);
+        margin-bottom: 8px;
+    }
+
+    .abak-columns {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 18px;
+        margin-top: 10px;
+    }
+
+        .abak-columns ul {
+            padding-left: 18px;
+            margin: 0;
+            color: var(--abak-text-soft);
+            font-size: 0.94rem;
+        }
+
+        .abak-columns li + li {
+            margin-top: 4px;
+        }
+
+    .abak-note {
+        margin-top: 14px;
+        font-size: 0.85rem;
+        color: var(--abak-text-soft);
+        font-style: italic;
+    }
+
+    .abak-panel-assistant {
+        background: radial-gradient(circle at top, rgba(0, 255, 255, 0.22), #020b18);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+        .abak-panel-assistant h2 {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+    .abak-label-pill {
+        display: inline-block;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--abak-text-soft);
+        margin-bottom: 8px;
+    }
+
+    .abak-assistant-feature {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 255, 255, 0.25);
+        background: radial-gradient(circle at left, rgba(0, 255, 255, 0.18), rgba(1, 15, 28, 0.96));
+        font-size: 0.9rem;
+        color: var(--abak-text-soft);
+    }
+
+        .abak-assistant-feature b {
+            color: #ffffff;
+        }
+
+    .sak-bot {
+        margin-top: 26px;
+        display: flex;
+        justify-content: center;
+    }
+
+        .sak-bot img {
+            max-width: 190px;
+            height: auto;
+            filter: drop-shadow(0 12px 30px rgba(0, 255, 255, 0.45));
+            animation: floatBot 6s ease-in-out infinite;
+        }
+
+    @@keyframes floatBot {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    /* ====== SECCIÓN MATERIAL DE CAPACITACIÓN ====== */
+
+    .cap-section {
+        margin-top: 30px;
+        border-radius: 26px;
+        padding: 22px 26px 26px;
+        background: radial-gradient(circle at top, rgba(0, 122, 255, 0.22), #020b18);
+        border: 1px solid rgba(0, 255, 255, 0.16);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+    }
+
+    .cap-section-title {
+        margin: 0 0 6px;
+        font-size: 1.1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--abak-accent-strong);
+    }
+
+    .cap-section-sub {
+        font-size: 0.9rem;
+        color: var(--abak-text-soft);
+        margin-bottom: 14px;
+    }
+
+    .cap-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 18px;
+    }
+
+    .cap-tab {
+        padding: 14px 18px;
+        border-radius: 18px;
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        background: radial-gradient(circle at top left, rgba(16, 185, 129, 0.12), rgba(3, 18, 32, 0.98));
+        color: var(--abak-text-soft);
+        cursor: pointer;
+        text-align: left;
+        transition: all 0.18s ease-out;
+        font-size: 0.9rem;
+    }
+
+        .cap-tab strong {
+            display: block;
+            font-size: 0.98rem;
+            color: #f9fafb;
+            margin-bottom: 4px;
+        }
+
+        .cap-tab span.badge {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            opacity: 0.85;
+            margin-bottom: 4px;
+        }
+
+        .cap-tab.active {
+            border-color: #22c55e;
+            box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.5), 0 16px 30px rgba(0, 0, 0, 0.8);
+            background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.3), rgba(3, 18, 32, 0.98));
+        }
+
+    .cap-viewer-box {
+        margin-top: 10px;
+        border-radius: 22px;
+        background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), #020617);
+        border: 1px solid rgba(15, 23, 42, 0.9);
+        padding: 14px 16px 18px;
+        color: var(--abak-text-soft);
+    }
+
+    .cap-viewer-header {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    .cap-viewer-title {
+        font-weight: 600;
+        color: #e5f3ff;
+    }
+
+    .cap-iframe-wrapper {
+        border-radius: 16px;
+        overflow: hidden;
+        background: #020617;
+        border: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+        .cap-iframe-wrapper iframe {
+            width: 100%;
+            height: 520px;
+            border: none;
+            background: #000;
+        }
+
+    .cap-actions {
+        margin-top: 10px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .cap-btn,
+    .cap-btn-outline {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.16s ease-out;
+        border: 1px solid transparent;
+    }
+
+    .cap-btn {
+        background: radial-gradient(circle at top, #00c6ff, #00ffbf);
+        color: #020617;
+        font-weight: 600;
+    }
+
+    .cap-btn-outline {
+        background: transparent;
+        color: var(--abak-text);
+        border-color: rgba(148, 163, 184, 0.6);
+    }
+
+        .cap-btn:hover,
+        .cap-btn-outline:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.8);
+            text-decoration: none;
+        }
+
+    @@media (max-width: 980px) {
+        .abak-grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .abak-nav-row {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cap-tabs {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .abak-panel,
+        .cap-section {
+            padding-inline: 18px;
+        }
+    }
+
+    @@media (max-width: 640px) {
+        .sak-bot img {
+            max-width: 150px;
+        }
+    }
+</style>
+
+<section class="abak-page">
+    <!-- NAVEGACIÓN SUPERIOR -->
+    <div class="abak-nav-row">
+        <a asp-controller="Home" asp-action="Index" class="abak-nav-pill">
+            <span class="icon">🏠</span>
+            <span>Volver al inicio</span>
+        </a>
+        <a asp-controller="ManualAyuda" asp-action="Index" class="abak-nav-pill">
+            <span class="icon">📘</span>
+            <span>Ir al manual de ayuda</span>
+        </a>
+        <a asp-controller="MaterialLibre" asp-action="Index" class="abak-nav-pill">
+            <span class="icon">📂</span>
+            <span>Ir a material libre</span>
+        </a>
+    </div>
+
+    <span class="abak-badge">
+        <span class="abak-badge-dot"></span>
+        Módulo de capacitación
+    </span>
+
+    <!-- PANEL PRINCIPAL + ASISTENTE -->
+    <div class="abak-grid">
+        <!-- Panel principal -->
+        <article class="abak-panel abak-panel-main">
+            <h1>Capacitación</h1>
+
+            @if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                <div class="abak-user-tag">
+                    <span class="abak-user-label">Estás autenticado como</span>
+                    <strong>@User.Identity!.Name</strong>
+                </div>
+            }
+
+            <p class="abak-body-text">
+                Este apartado reúne el material de capacitación sobre el uso del ERP ABAK. El contenido está organizado
+                en módulos que explican el manejo de artículos, clientes/proveedores y almacenes, utilizando archivos
+                PDF y presentaciones en PowerPoint.
+            </p>
+
+            <div class="abak-columns">
+                <div>
+                    <div class="abak-section-title">Contenido de los módulos</div>
+                    <ul>
+                        <li>
+                            <strong>Módulo Artículos</strong> – explicación de qué es un artículo dentro del sistema,
+                            cómo se parametriza y cómo se documentan sus características.
+                        </li>
+                        <li>
+                            <strong>Módulo Clientes y proveedores</strong> – manejo de catálogos, altas y edición de
+                            clientes y proveedores.
+                        </li>
+                        <li>
+                            <strong>Módulo Gestión de almacenes</strong> – movimientos, existencias y flujo en el SIAAPI
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="abak-section-title">Cómo usar estos materiales</div>
+                    <ul>
+                        <li>
+                            Utiliza los <strong>PDF</strong> como guía de estudio: puedes revisarlos en pantalla o
+                            descargarlos para repasar el contenido.
+                        </li>
+                        <li>
+                            Usa las <strong>presentaciones (PPT)</strong> cuando expliques el módulo en una sesión
+                            grupal o reunión.
+                        </li>
+                        <li>
+                            Puedes avanzar módulo por módulo: primero Artículos, después Clientes y proveedores y por
+                            último Gestión de almacenes.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </article>
+
+        <!-- Panel asistente -->
+        <aside class="abak-panel abak-panel-assistant">
+            <span class="abak-label-pill">Asistente ABAK</span>
+            <h2>SAK guía cada sesión</h2>
+
+            <p class="abak-body-text" style="margin-bottom:10px;">
+                El área de capacitación centraliza los materiales que acompañan el uso diario del ERP. SAK aparece aquí
+                como recordatorio de que el módulo está pensado para apoyar cada sesión de aprendizaje.
+            </p>
+
+            <div class="abak-assistant-feature">
+                <b>Material estructurado</b>
+                <span>cada módulo mantiene la misma línea gráfica y de contenidos.</span>
+            </div>
+            <div class="abak-assistant-feature">
+                <b>Uso flexible</b>
+                <span>puedes revisar los archivos de forma individual o en sesiones grupales.</span>
+            </div>
+            <div class="abak-assistant-feature">
+                <b>Consulta rápida</b>
+                <span>los documentos se abren desde la página sin salir del sistema.</span>
+            </div>
+
+            <div class="sak-bot">
+                <img src="~/Portada/images/Sak/complet libro.png" alt="SAK capacitación" />
+            </div>
+        </aside>
+    </div>
+
+    <!-- ========= MATERIAL DE CAPACITACIÓN (PDF + PPT) ========= -->
+    <section class="cap-section">
+        <h3 class="cap-section-title">Material de capacitación</h3>
+        <p class="cap-section-sub">
+            Selecciona un módulo para ver el PDF directamente en pantalla. Desde aquí también puedes abrir el archivo en
+            otra pestaña o descargar la presentación asociada.
+        </p>
+
+        <!-- Tarjetas de módulos -->
+        <div class="cap-tabs">
+            <button class="cap-tab active"
+                    data-title="Módulo Artículos"
+                    data-pdf="@Url.Content("~/Portada/MaterialCapacitacion/Modulo Articulos.pdf")"
+                    data-ppt="@Url.Content("~/Portada/MaterialCapacitacion/Modulo Articulos.pptx")">
+                <span class="badge">MÓDULO 1</span>
+                <strong>Artículos</strong>
+                <span>Conceptos básicos, estructura y parametrización de artículos.</span>
+            </button>
+
+            <button class="cap-tab"
+                    data-title="Módulo Clientes y proveedores"
+                    data-pdf="@Url.Content("~/Portada/MaterialCapacitacion/Modulo Clientes y Proveedores.pdf")"
+                    data-ppt="@Url.Content("~/Portada/MaterialCapacitacion/Modulo Clientes y Proveedores.pptx")">
+                <span class="badge">MÓDULO 2</span>
+                <strong>Clientes y proveedores</strong>
+                <span>Gestión de catálogo, altas, edición y seguimiento.</span>
+            </button>
+
+            <button class="cap-tab"
+                    data-title="Módulo Gestión de almacenes"
+                    data-pdf="@Url.Content("~/Portada/MaterialCapacitacion/Modulo Gestion Almacenes.pdf")"
+                    data-ppt="@Url.Content("~/Portada/MaterialCapacitacion/Modulo Gestion Almacenes.pptx")">
+                <span class="badge">MÓDULO 3</span>
+                <strong>Gestión de almacenes</strong>
+                <span>Movimientos, existencias y  flujo en el SIAAPI</span>
+            </button>
+        </div>
+
+        <!-- Visor -->
+        <div class="cap-viewer-box">
+            <div class="cap-viewer-header">
+                Vista previa · <span id="cap-viewer-title" class="cap-viewer-title">Módulo Artículos</span>
+            </div>
+
+            <div class="cap-iframe-wrapper">
+                <!-- src inicial para que funcione incluso si falla el script -->
+                <iframe id="cap-pdf-frame"
+                        src="@Url.Content("~/Portada/MaterialCapacitacion/Modulo Articulos.pdf")"
+                        title="Vista previa del material de capacitación">
+                </iframe>
+            </div>
+
+            <div class="cap-actions">
+                <a id="cap-pdf-link"
+                   class="cap-btn"
+                   target="_blank"
+                   href="@Url.Content("~/Portada/MaterialCapacitacion/Modulo Articulos.pdf")">
+                    Ver / descargar PDF
+                </a>
+
+                <a id="cap-ppt-link"
+                   class="cap-btn-outline"
+                   target="_blank"
+                   href="@Url.Content("~/Portada/MaterialCapacitacion/Modulo Articulos.pptx")">
+                    Descargar PPT
+                </a>
+            </div>
+        </div>
+    </section>
+</section>
+
+@section Scripts {
+    <script>
+        (function () {
+            const buttons = document.querySelectorAll('.cap-tab');
+            const iframe = document.getElementById('cap-pdf-frame');
+            const pdfLink = document.getElementById('cap-pdf-link');
+            const pptLink = document.getElementById('cap-ppt-link');
+            const titleSpan = document.getElementById('cap-viewer-title');
+
+            if (!buttons.length || !iframe || !pdfLink || !pptLink || !titleSpan) {
+                return;
+            }
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const pdf = btn.getAttribute('data-pdf');
+                    const ppt = btn.getAttribute('data-ppt');
+                    const title = btn.getAttribute('data-title');
+
+                    if (pdf) {
+                        iframe.src = pdf;
+                        pdfLink.href = pdf;
+                    }
+
+                    if (ppt) {
+                        pptLink.href = ppt;
+                    }
+
+                    if (title) {
+                        titleSpan.textContent = title;
+                    }
+                });
+            });
+        })();
+    </script>
+}

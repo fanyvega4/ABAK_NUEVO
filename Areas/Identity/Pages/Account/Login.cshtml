@@ -1,0 +1,417 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Inicio de sesión";
+}
+
+<style>
+    :root {
+        --abak-bg: #020817;
+        --abak-gradient-top: #00e6ff;
+        --abak-gradient-mid: #001226;
+        --abak-pill-bg: rgba(3, 20, 40, 0.92);
+        --abak-cyan: #39f5ff;
+        --abak-green: #24ffb4;
+        --abak-text: #e6f4ff;
+        --abak-muted: #8ca0c3;
+        --abak-border-soft: rgba(0, 245, 255, .25);
+    }
+
+    body {
+        background: radial-gradient(circle at top, var(--abak-gradient-top) 0, #021223 40%, #000711 100%);
+        color: var(--abak-text);
+    }
+
+    .abak-auth-page {
+        min-height: calc(100vh - 0px);
+        padding: 32px 0 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* NAV SUPERIOR */
+    .abak-auth-topnav {
+        max-width: 900px;
+        margin: 0 auto 6px;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .abak-pill-nav {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px 22px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--abak-text);
+        text-decoration: none;
+        background: radial-gradient(circle at top, #022335, #020817);
+        border: 1px solid var(--abak-border-soft);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, .8);
+        overflow: hidden;
+        transition: all .18s ease-out;
+    }
+
+        .abak-pill-nav::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #00ffbf44, #00e6ff55);
+            opacity: 0;
+            transition: opacity .18s ease-out;
+            z-index: -1;
+        }
+
+        .abak-pill-nav:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, .9);
+        }
+
+            .abak-pill-nav:hover::before {
+                opacity: 1;
+            }
+
+    /* CONTENEDOR PRINCIPAL */
+    .abak-auth-shell {
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 28px;
+        background: radial-gradient(circle at top, rgba(0, 255, 255, .12), rgba(3, 12, 30, .98));
+        box-shadow: 0 20px 50px rgba(0, 0, 0, .85);
+        padding: 16px 18px 22px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+        gap: 14px;
+    }
+
+    .abak-auth-main,
+    .abak-auth-side {
+        background: radial-gradient(circle at top left, rgba(0, 255, 255, .08), rgba(1, 8, 20, .98));
+        border-radius: 24px;
+        padding: 18px 20px 22px;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, .6);
+        overflow: hidden; /* 🔹 para que nada se salga del recuadro */
+    }
+
+    .abak-auth-main-inner {
+        max-width: 430px;
+        margin: 0 auto;
+    }
+
+    .abak-auth-side-inner {
+        max-width: 380px;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    /* TÍTULO + ROBOT MINI */
+    .abak-header-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+
+    .abak-auth-title {
+        font-size: 1.8rem;
+        letter-spacing: .03em;
+        margin: 0;
+    }
+
+    .sak-mini {
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        background: radial-gradient(circle at top, #ffffff22, transparent 70%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .sak-mini img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+    .abak-auth-subtitle {
+        font-size: .9rem;
+        color: var(--abak-muted);
+        margin-bottom: 14px;
+    }
+
+    /* CAMPOS DEL FORMULARIO */
+    .abak-field {
+        margin-bottom: 12px;
+        max-width: 100%;
+    }
+
+        .abak-field label {
+            font-size: .8rem;
+            color: var(--abak-muted);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+    .abak-input-wrapper {
+        position: relative;
+    }
+
+    .abak-input-icon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: .85rem;
+        opacity: .8;
+    }
+
+    .abak-input {
+        width: 100%;
+        padding: 9px 14px 9px 40px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, .8);
+        background: linear-gradient(135deg, #040612, #050517);
+        color: var(--abak-text);
+        font-size: .9rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .9);
+        outline: none;
+        transition: border .15s, box-shadow .15s, transform .15s;
+        box-sizing: border-box; /* 🔹 evita que se desborde */
+    }
+
+        .abak-input:focus {
+            border-color: var(--abak-cyan);
+            box-shadow: 0 0 0 1px rgba(0, 255, 255, .35), 0 6px 16px rgba(0, 0, 0, .9);
+            transform: translateY(-1px);
+        }
+
+        .abak-input::placeholder {
+            color: #5e6b88;
+        }
+
+    .abak-auth-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 6px 0 14px;
+        font-size: .8rem;
+    }
+
+    .abak-link-soft,
+    .abak-link-strong {
+        color: var(--abak-cyan);
+        text-decoration: none;
+    }
+
+        .abak-link-soft:hover,
+        .abak-link-strong:hover {
+            text-decoration: underline;
+        }
+
+    .abak-auth-btn {
+        width: 100%;
+        border: none;
+        border-radius: 999px;
+        padding: 10px 12px;
+        margin: 0 0 8px;
+        background: linear-gradient(90deg, #00ffbf, #00e6ff);
+        color: #001018;
+        font-weight: 600;
+        letter-spacing: .16em;
+        font-size: .8rem;
+        text-transform: uppercase;
+        box-shadow: 0 14px 40px rgba(0, 255, 210, .34);
+        cursor: pointer;
+        transition: transform .15s, box-shadow .15s;
+    }
+
+        .abak-auth-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 20px 55px rgba(0, 255, 210, .45);
+        }
+
+    .abak-auth-footnote {
+        font-size: .8rem;
+        color: var(--abak-muted);
+        text-align: left;
+    }
+
+    .abak-side-tag {
+        font-size: .72rem;
+        text-transform: uppercase;
+        letter-spacing: .18em;
+        color: var(--abak-muted);
+        margin-bottom: 8px;
+    }
+
+    .abak-side-title {
+        font-size: 1.3rem;
+        margin: 0 0 6px;
+    }
+
+    .abak-side-text {
+        font-size: .88rem;
+        color: var(--abak-muted);
+        margin-bottom: 14px;
+    }
+
+    /* ROBOT GRANDE */
+    .sak-robot-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 4px;
+    }
+
+    .sak-robot {
+        width: 170px;
+        max-width: 100%;
+        filter: drop-shadow(0 18px 40px rgba(0, 255, 255, .45));
+        opacity: .98;
+    }
+
+    @@keyframes sak-breathe {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-6px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    .sak-breathe {
+        animation: sak-breathe 3.8s ease-in-out infinite;
+    }
+
+    @@media (max-width: 992px) {
+        .abak-auth-shell {
+            grid-template-columns: minmax(0, 1fr);
+            padding: 16px 14px 20px;
+        }
+
+        .abak-auth-main,
+        .abak-auth-side {
+            padding: 18px 16px 22px;
+        }
+
+        .sak-robot {
+            width: 150px;
+        }
+    }
+</style>
+
+<div class="abak-auth-page">
+    <div class="abak-auth-topnav">
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="abak-pill-nav">INICIO</a>
+        <a asp-area="Identity" asp-page="/Account/Register" class="abak-pill-nav">REGISTRO</a>
+    </div>
+
+    <div class="abak-auth-shell">
+        <section class="abak-auth-main">
+            <div class="abak-auth-main-inner">
+                <div class="abak-header-title">
+                    <h1 class="abak-auth-title">Inicio de sesión</h1>
+                    <div class="sak-mini">
+                        <img src="~/Portada/images/Sak/Sak.principal.png" alt="Sak pequeño" />
+                    </div>
+                </div>
+
+                <p class="abak-auth-subtitle">
+                    Accede al portal interno de ABAK con tu usuario y contraseña.
+                </p>
+
+                <form id="account" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="abak-field">
+                        <label asp-for="Input.Email"></label>
+                        <div class="abak-input-wrapper">
+                            <span class="abak-input-icon">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <input asp-for="Input.Email"
+                                   class="abak-input"
+                                   autocomplete="username"
+                                   aria-required="true"
+                                   placeholder="Escribe tu usuario o correo" />
+                        </div>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="abak-field">
+                        <label asp-for="Input.Password"></label>
+                        <div class="abak-input-wrapper">
+                            <span class="abak-input-icon">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                            <input asp-for="Input.Password"
+                                   class="abak-input"
+                                   autocomplete="current-password"
+                                   aria-required="true"
+                                   placeholder="Escribe tu contraseña" />
+                        </div>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="abak-auth-options">
+                        <div class="form-check">
+                            <input asp-for="Input.RememberMe" class="form-check-input" />
+                            <label asp-for="Input.RememberMe" class="form-check-label"></label>
+                        </div>
+
+                        <a asp-page="./ForgotPassword" class="abak-link-soft">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <button type="submit" class="abak-auth-btn">ENTRAR</button>
+
+                    <p class="abak-auth-footnote">
+                        ¿Aún no tienes usuario?
+                        <a asp-area="Identity" asp-page="/Account/Register" class="abak-link-strong">
+                            Registra una cuenta nueva
+                        </a>
+                        o consulta al administrador de ABAK.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+        <aside class="abak-auth-side">
+            <div class="abak-auth-side-inner">
+                <div class="abak-header-title">
+                    <h2 class="abak-side-title">Portal interno ABAK</h2>
+                    <div class="sak-mini">
+                        <img src="~/Portada/images/Sak/Sak.principal.png" alt="Sak pequeño" />
+                    </div>
+                </div>
+
+                <div class="abak-side-tag">ACCESO PRIVADO</div>
+
+                <p class="abak-side-text">
+                    Inicia sesión para consultar manuales, material de capacitación y contenido interno de la plataforma ABAK.
+                </p>
+
+                <div class="sak-robot-wrapper">
+                    <!-- Robot levantando la mano -->
+                    <img src="~/Portada/images/Sak/complet emotion.png"
+                         alt="SAK asistente saludando"
+                         class="sak-robot sak-breathe" />
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

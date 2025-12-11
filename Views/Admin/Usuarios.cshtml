@@ -1,0 +1,520 @@
+﻿@using System.Linq
+@model ABAK_NUEVO.ViewModels.Admin.AdminUsuariosVM
+
+@{
+    ViewData["Title"] = "Usuarios";
+
+    var totalUsuarios = Model.TotalRegistros;
+    var admins = Model.Usuarios?.Count(u =>
+                           !string.IsNullOrEmpty(u.Rol) &&
+                           u.Rol.Contains("admin", System.StringComparison.OrdinalIgnoreCase)) ?? 0;
+
+    var materialLibre = Model.Usuarios?.Count(u => u.SeccionRegistro == "MaterialLibre") ?? 0;
+    var otrasSecciones = totalUsuarios - materialLibre;
+}
+
+@section Styles {
+    <style>
+        :root {
+            --abak-bg: #020817;
+            --abak-gradient-top: #00e6ff;
+            --abak-gradient-mid: #001226;
+            --abak-text: #e6f4ff;
+        }
+
+        body {
+            background: radial-gradient(circle at top, var(--abak-gradient-top) 0, #021223 40%, #000711 100%);
+            color: var(--abak-text);
+            font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .hist-page {
+            min-height: calc(100vh - 0px);
+            padding: 32px 0 48px;
+        }
+
+        /* CONTORNO OSCURO Y PANEL BLANCO INTERNO */
+        .hist-shell {
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 30px;
+            background: radial-gradient(circle at top, rgba(0, 255, 255, .25), rgba(3, 12, 30, .98));
+            box-shadow: 0 24px 60px rgba(0, 0, 0, .9);
+            padding: 4px;
+            position: relative;
+        }
+
+        .hist-inner {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 18px 22px 24px;
+            color: #111827;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* TOP BAR */
+        .hist-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: .85rem;
+            color: #6b7280;
+        }
+
+        .hist-breadcrumb {
+            font-size: .8rem;
+        }
+
+            .hist-breadcrumb a {
+                color: #0ea5e9;
+                text-decoration: none;
+            }
+
+                .hist-breadcrumb a:hover {
+                    text-decoration: underline;
+                }
+
+        .hist-topbtn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border-radius: 999px;
+            border: 1px solid #0ea5e9;
+            background: radial-gradient(circle at top, #022335, #020817);
+            color: #e6f4ff;
+            font-size: .78rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, .8);
+            transition: all .18s ease-out;
+        }
+
+            .hist-topbtn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 16px 30px rgba(0, 0, 0, .9);
+                background: linear-gradient(90deg, #00ffbf33, #00e6ff55);
+                text-decoration: none;
+            }
+
+        /* HEADER PRINCIPAL */
+        .hist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .hist-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hist-title {
+            font-size: 1.7rem;
+            margin: 0;
+            letter-spacing: .03em;
+            color: #0f172a;
+        }
+
+        .hist-sub {
+            font-size: .85rem;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        .sak-mini {
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            background: radial-gradient(circle at top, #eff6ff, #bfdbfe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+        }
+
+            .sak-mini img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+        .hist-count {
+            font-size: .82rem;
+            color: #6b7280;
+            text-align: right;
+        }
+
+            .hist-count strong {
+                color: #111827;
+            }
+
+        /* MÉTRICAS */
+        .hist-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .hist-metric {
+            border-radius: 16px;
+            padding: 10px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, .25);
+            color: #ffffff;
+        }
+
+        .metric-total {
+            background: linear-gradient(135deg, #00ffbf, #00c0ff);
+        }
+
+        .metric-login {
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+        }
+
+        .metric-registro {
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+        }
+
+        .metric-logout {
+            background: linear-gradient(135deg, #dc2626, #f97373);
+        }
+
+        .hist-metric-label {
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            opacity: .9;
+        }
+
+        .hist-metric-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        .hist-metric-note {
+            font-size: .75rem;
+            opacity: .9;
+        }
+
+        /* TABLA */
+        .hist-table-wrapper {
+            border-radius: 18px;
+            background: #ffffff;
+            box-shadow: 0 14px 32px rgba(15, 23, 42, .18);
+            padding: 10px 12px 12px;
+            overflow-x: auto;
+            color: #111827;
+        }
+
+        .hist-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .82rem;
+            color: #111827;
+            min-width: 640px;
+        }
+
+            .hist-table thead {
+                background: #f3f4f6;
+            }
+
+            .hist-table th,
+            .hist-table td {
+                padding: 6px 8px;
+                border-bottom: 1px solid #e5e7eb;
+                white-space: nowrap;
+                text-align: center; /* centrado por defecto */
+            }
+
+            .hist-table th {
+                font-weight: 600;
+                font-size: .8rem;
+                color: #6b7280;
+                text-transform: uppercase;
+                letter-spacing: .08em;
+            }
+
+                /* Correo, Nombre y Empresa a la izquierda */
+                .hist-table th:nth-child(1),
+                .hist-table td:nth-child(1),
+                .hist-table th:nth-child(2),
+                .hist-table td:nth-child(2),
+                .hist-table th:nth-child(3),
+                .hist-table td:nth-child(3) {
+                    text-align: left;
+                }
+
+            .hist-table tbody tr:nth-child(even) {
+                background: #f9fafb;
+            }
+
+            .hist-table tbody tr:hover {
+                background: #e0f2fe;
+            }
+
+        /* Píldoras sección registro */
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        .badge-sec-login {
+            background: #2563eb;
+        }
+
+        .badge-sec-general {
+            background: #059669;
+        }
+
+        .badge-sec-manual {
+            background: #7c3aed;
+        }
+
+        .badge-sec-cap {
+            background: #d97706;
+        }
+
+        .badge-sec-mat {
+            background: #16a34a;
+        }
+
+        .badge-sec-other {
+            background: #4b5563;
+        }
+
+        /* Rol azul normal, rojo admin */
+        .rol-text {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .cell-admin {
+            color: #b91c1c;
+            font-weight: 700;
+        }
+
+        .hist-link-back {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: .82rem;
+            color: #0ea5e9;
+            text-decoration: none;
+        }
+
+            .hist-link-back:hover {
+                text-decoration: underline;
+            }
+
+        /* Robot grande de fondo */
+        .sak-bg {
+            position: absolute;
+            right: -30px;
+            bottom: -30px;
+            width: 160px;
+            opacity: .15;
+            pointer-events: none;
+        }
+
+        @@keyframes sak-breathe {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .sak-breathe {
+            animation: sak-breathe 3.8s ease-in-out infinite;
+        }
+
+        @@media (max-width: 900px) {
+            .hist-shell {
+                margin: 0 10px;
+            }
+
+            .hist-inner {
+                padding: 16px 14px 20px;
+            }
+
+            .hist-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hist-count {
+                text-align: left;
+            }
+
+            .hist-metrics {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @@media (max-width: 600px) {
+            .hist-metrics {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+    </style>
+}
+
+<div class="hist-page">
+    <div class="hist-shell">
+        <div class="hist-inner">
+            <div class="hist-topbar">
+                <div class="hist-breadcrumb">
+                    <a asp-controller="Home" asp-action="Index">Inicio</a> &gt;
+                    <a asp-action="Index">Panel de administración</a> &gt;
+                    Usuarios
+                </div>
+
+                <div style="display:flex; gap:8px;">
+                    <a asp-controller="HistorialAccesos" asp-action="Index" class="hist-topbtn">
+                        HISTORIAL
+                    </a>
+                    <a asp-action="Index" class="hist-topbtn">
+                        ADMIN
+                    </a>
+                </div>
+            </div>
+
+            <div class="hist-header">
+                <div class="hist-header-left">
+                    <div class="sak-mini">
+                        <img src="~/Portada/images/Sak/complet emotion.png" alt="Sak usuarios" />
+                    </div>
+                    <div>
+                        <h1 class="hist-title">Usuarios registrados</h1>
+                        <div class="hist-sub">
+                            Total: @totalUsuarios usuarios.
+                        </div>
+                    </div>
+                </div>
+                <div class="hist-count">
+                    Admins: <strong>@admins</strong><br />
+                    Material libre: <strong>@materialLibre</strong>
+                </div>
+            </div>
+
+            <!-- MÉTRICAS -->
+            <div class="hist-metrics">
+                <div class="hist-metric metric-total">
+                    <div class="hist-metric-label">Total usuarios</div>
+                    <div class="hist-metric-value">@totalUsuarios</div>
+                    <div class="hist-metric-note">Cuentas registradas</div>
+                </div>
+                <div class="hist-metric metric-login">
+                    <div class="hist-metric-label">Administradores</div>
+                    <div class="hist-metric-value">@admins</div>
+                    <div class="hist-metric-note">Cuentas con rol de admin</div>
+                </div>
+                <div class="hist-metric metric-registro">
+                    <div class="hist-metric-label">Material libre</div>
+                    <div class="hist-metric-value">@materialLibre</div>
+                    <div class="hist-metric-note">Usuarios registrados desde Material libre</div>
+                </div>
+                <div class="hist-metric metric-logout">
+                    <div class="hist-metric-label">Otras secciones</div>
+                    <div class="hist-metric-value">@otrasSecciones</div>
+                    <div class="hist-metric-note">Registro desde otras áreas</div>
+                </div>
+            </div>
+
+            <!-- TABLA -->
+            <div class="hist-table-wrapper">
+                <table class="hist-table">
+                    <thead>
+                        <tr>
+                            <th>Correo</th>
+                            <th>Nombre</th>
+                            <th>Empresa</th>
+                            <th>Rol</th>
+                            <th>Sección registro</th>
+                            <th>Teléfono</th>
+                            <th>Fecha registro</th>
+                            <th>Último acceso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Usuarios != null && Model.Usuarios.Any())
+                        {
+                            foreach (var u in Model.Usuarios)
+                            {
+                                // 🔴 Resaltamos al admin principal
+                                var esAdmin = !string.IsNullOrEmpty(u.Rol) &&
+                                u.Rol.Contains("admin", System.StringComparison.OrdinalIgnoreCase);
+
+                                string seccionClass = u.SeccionRegistro switch
+                                {
+                                    "Login" => "badge-sec-login",
+                                    "General" => "badge-sec-general",
+                                    "ManualAyuda" => "badge-sec-manual",
+                                    "Capacitacion" => "badge-sec-cap",
+                                    "MaterialLibre" => "badge-sec-mat",
+                                    _ => "badge-sec-other"
+                                };
+
+                                <tr>
+                                    <td class="@(esAdmin ? "cell-admin" : "")">@u.Email</td>
+                                    <td class="@(esAdmin ? "cell-admin" : "")">@u.NombreCompleto</td>
+                                    <td>@u.Empresa</td>
+                                    <td class="@(esAdmin ? "cell-admin" : "rol-text")">@u.Rol</td>
+                                    <td>
+                                        <span class="badge-pill @seccionClass">@u.SeccionRegistro</span>
+                                    </td>
+                                    <td>@u.NumeroContacto</td>
+                                    <td>@u.FechaRegistro.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td>
+                                        @(u.UltimoAcceso.HasValue
+                                                                        ? u.UltimoAcceso.Value.ToString("dd/MM/yyyy HH:mm")
+                                                                        : "-")
+                            </td>
+                        </tr>
+                                                }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="8" class="text-center text-muted">
+                                    No hay usuarios para mostrar.
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <a class="hist-link-back" asp-action="Index">
+                ← Volver al panel
+            </a>
+        </div>
+
+        <img src="~/Portada/images/Sak/Sak.guiño.png" alt="Sak fondo usuarios" class="sak-bg sak-breathe" />
+    </div>
+</div>

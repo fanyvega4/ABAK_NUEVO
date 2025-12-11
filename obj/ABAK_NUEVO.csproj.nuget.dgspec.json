@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO\\ABAK_NUEVO.csproj": {}
+    "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\ABAK_NUEVO.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO\\ABAK_NUEVO.csproj": {
+    "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\ABAK_NUEVO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO\\ABAK_NUEVO.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\ABAK_NUEVO.csproj",
         "projectName": "ABAK_NUEVO",
-        "projectPath": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO\\ABAK_NUEVO.csproj",
+        "projectPath": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\ABAK_NUEVO.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO\\obj\\",
+        "outputPath": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -94,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

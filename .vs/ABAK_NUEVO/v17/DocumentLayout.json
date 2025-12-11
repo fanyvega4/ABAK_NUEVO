@@ -1,14 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO\\",
+  "WorkspaceRootPath": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|c:\\users\\hp\\source\\repos\\abak_nuevo\\portada\\css\\equipo.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|solutionrelative:portada\\css\\equipo.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|c:\\users\\hp\\source\\repos\\abak_nuevo1\\abak_nuevo\\views\\demo\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|solutionrelative:views\\demo\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|c:\\users\\hp\\source\\repos\\abak_nuevo\\views\\equipo\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|solutionrelative:views\\equipo\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|c:\\users\\hp\\source\\repos\\abak_nuevo1\\abak_nuevo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|c:\\users\\hp\\source\\repos\\abak_nuevo1\\abak_nuevo\\areas\\identity\\pages\\account\\manage\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|c:\\users\\hp\\source\\repos\\abak_nuevo1\\abak_nuevo\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A83AD774-2369-47CA-870C-B074AE7DDC98}|ABAK_NUEVO.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +31,55 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Equipo.css",
-              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO\\Portada\\Css\\Equipo.css",
-              "RelativeDocumentMoniker": "Portada\\Css\\Equipo.css",
-              "ToolTip": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO\\Portada\\Css\\Equipo.css",
-              "RelativeToolTip": "Portada\\Css\\Equipo.css",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAkwKsAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-12T00:37:11.932Z",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\Views\\Demo\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Demo\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\Views\\Demo\\Index.cshtml",
+              "RelativeToolTip": "Views\\Demo\\Index.cshtml",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAAAGQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-11T19:14:32.421Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAQwJQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T19:01:26.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Controllers\\AdminController.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T19:01:00.837Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO\\Views\\Equipo\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Equipo\\Index.cshtml",
-              "ToolTip": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO\\Views\\Equipo\\Index.cshtml",
-              "RelativeToolTip": "Views\\Equipo\\Index.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAFYAAAAlAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\source\\repos\\ABAK_NUEVO1\\ABAK_NUEVO\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
+              "ViewState": "AgIAANsBAAAAAAAAAAAQwP0BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-12T00:20:00.356Z"
+              "WhenOpened": "2025-12-11T08:06:11.557Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }
